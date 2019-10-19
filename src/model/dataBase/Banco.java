@@ -12,6 +12,8 @@ public class Banco {
     public final static String url = "jdbc:postgresql:biblioteca";
     public static Connection conn = null;
 
+    
+    //Abre a conexão com banco de dados
     public static Connection getConnection(){
         if(conn == null){
             try{
@@ -24,7 +26,8 @@ public class Banco {
         }
         return conn;
     }
-
+    
+    //fecha a conexão com banco de dados
     public static void closeConnection(){
         if(conn != null){
             try{
@@ -36,7 +39,8 @@ public class Banco {
             }
         }
     }
-
+    
+    //fecha os dois tipos de Statments
     public static void closeStatement(Statement st){
         if(st != null){
             try{
@@ -48,7 +52,8 @@ public class Banco {
             }
         }
     }
-
+    
+    //fecha o resultSet
     public static void closeResultSet(ResultSet rs){
         if(rs != null){
             try{
