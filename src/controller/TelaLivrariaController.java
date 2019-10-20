@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import view.TelaCriaAutor;
 import view.TelaCriaEditora;
+import view.TelaCriaLivro;
 
 //classe responsavel em controlar a TelaLivraria(Tela principal)
 //aqui vai ter todas as chamadas de ações para aquela tela
@@ -23,6 +24,14 @@ public class TelaLivrariaController{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			new TelaCriaEditora();//chama outra tela
+		}
+	}
+	
+	//Ação do botão para criar Livro
+	public class onBtCriarLivro implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			new TelaCriaLivro();//chama outra tela
 		}
 	}
 }
