@@ -1,4 +1,4 @@
-package model.entities;
+package model.collection.entities;
 
 public class Autor {
 	private String nome;

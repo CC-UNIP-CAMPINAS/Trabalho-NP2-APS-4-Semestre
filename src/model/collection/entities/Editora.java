@@ -1,4 +1,4 @@
-package model.entities;
+package model.collection.entities;
 
 public class Editora {
 	private String nome;
