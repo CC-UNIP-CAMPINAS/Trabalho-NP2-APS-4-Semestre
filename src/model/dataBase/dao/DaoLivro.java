@@ -15,11 +15,11 @@ static PreparedStatement st = null;
 	//Cria uma editora no banco de dados
 	public static void criaLivro(JTextField tfTitle, JTextField tfIsbn, JTextField tfPublisherId, JTextField tfPrice) {
 		try {
-			st = Banco.getConnection().prepareStatement("INSERT INTO publishers VALUES (?, ?, ?, ?)");
-			st.setInt(1, Integer.parseInt(tfTitle.getText()));
+			st = Banco.getConnection().prepareStatement("INSERT INTO books VALUES (?, ?, ?, ?)");
+			st.setString(1, tfTitle.getText());
 			st.setString(2, tfIsbn.getText());
-			st.setString(3, tfPublisherId.getText());
-			st.setString(4, tfPrice.getText());
+			st.setInt(3, Integer.parseInt(tfPublisherId.getText()));
+			st.setInt(4, Integer.parseInt(tfPrice.getText()));
 			st.execute();
 			
 			//title isbn publisher_id price
