@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.dataBase.dao.DaoLivro;
-import view.TelaCriaEditora;
 import view.TelaCriaLivro;
 
 //classe responsavel em controlar a TelaCriaLivro

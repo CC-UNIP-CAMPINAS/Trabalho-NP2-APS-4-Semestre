@@ -37,6 +37,7 @@ public abstract class DaoAutor {
 		}
 	}
 	
+	//método que busca no banco e adiciona os autores na devida coleção
 	public static void carregaAutor() {
 		try {
 			st = Banco.getConnection().prepareStatement("Select * from authors");
