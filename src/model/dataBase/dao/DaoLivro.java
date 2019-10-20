@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 import model.dataBase.Banco;
 
 //Essa classe vai ficar todos os tipos de acesso aos dados do livro no postgre
-public class DaoLivro {
+public abstract class DaoLivro {
 	
 static PreparedStatement st = null;
 	

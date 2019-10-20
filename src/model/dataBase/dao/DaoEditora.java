@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 import model.dataBase.Banco;
 
 //Essa classe vai ficar todos os tipos de acesso aos dados de Editora no postgre
-public class DaoEditora {
+public abstract class DaoEditora {
 	
 static PreparedStatement st = null;
 	
