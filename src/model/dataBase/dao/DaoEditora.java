@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 import model.collection.Colecao;
@@ -18,13 +19,16 @@ static ResultSet rs = null;
 	
 
 	//Cria uma editora no banco de dados
-	public static void criaEditora(JTextField tfNome, JTextField tfUrl, JTextField tfId) {
+	public static void criaEditora(JTextField tfNome, JTextField tfUrl, JTextField tfId, JComboBox cbEditora) {
 		try {
 			st = Banco.getConnection().prepareStatement("INSERT INTO publishers VALUES (?, ?, ?)");
 			st.setInt(1, Integer.parseInt(tfId.getText()));
 			st.setString(2, tfNome.getText());
 			st.setString(3, tfUrl.getText());
 			st.execute();
+			Editora editora = new Editora(tfNome.getText(), tfUrl.getText(), Integer.parseInt(tfId.getText()));
+			Colecao.getEditoras().add(editora);
+			cbEditora.addItem(editora);//Adiciona o objeto no combobox
 		}
 		catch(SQLException e) {
 			e.printStackTrace();

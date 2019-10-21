@@ -13,6 +13,10 @@ public class Editora implements Comparable<Editora>{
 		this.url = url;
 	}
 	
+	public int getIdEditora() {
+		return idEditora;
+	}
+
 	@Override//TreeSet pede esse método, ele que vai identificar oq são Autores iguais
 	public boolean equals(Object outroObjeto) {
 		if(this==outroObjeto)
@@ -32,7 +36,7 @@ public class Editora implements Comparable<Editora>{
 	}
 	
 	@Override
-	public String toString() {//usado para testar
-		return "nome=" + nome + "\n";
+	public String toString() {//usado para testar e no comboBox
+		return nome;
 	}
 }

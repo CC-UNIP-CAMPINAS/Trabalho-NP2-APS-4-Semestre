@@ -14,7 +14,7 @@ public class TelaCriaLivroController{
 	public class onBtCriarLivro implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {//chama o metodo de criação dentro de DaoLivro, esse método faz acesso ao banco, por isso está em dao
-			DaoLivro.criaLivro(TelaCriaLivro.tfTitle, TelaCriaLivro.tfIsbn, TelaCriaLivro.tfPublisherId, TelaCriaLivro.tfPrice);
+			DaoLivro.criaLivro(TelaCriaLivro.tfTitle, TelaCriaLivro.tfIsbn, TelaCriaLivro.tfPrice, TelaCriaLivro.cbEditora);
 		}
 		
 	}
