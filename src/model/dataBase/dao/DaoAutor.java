@@ -25,7 +25,7 @@ public abstract class DaoAutor {
 			st.setString(3, tfSobreNome.getText());
 			st.execute();
 			
-			Autor autor = new Autor(tfNome.getText(), tfSobreNome.getText(), Integer.parseInt(tfId.getText()));
+			Autor autor = new Autor(tfNome.getText()+" "+tfSobreNome.getText(), Integer.parseInt(tfId.getText()));
 			Colecao.getAutores().add(autor);
 		}
 		catch(SQLException e) {
@@ -44,7 +44,7 @@ public abstract class DaoAutor {
 			rs = st.executeQuery();
 			
 			while(rs.next()) {
-				Autor autor = new Autor(rs.getString(2), rs.getString(3), rs.getInt(1));
+				Autor autor = new Autor(Autor.juntaNomeAutor(rs.getString(2), rs.getString(3)), rs.getInt(1));
 				Colecao.getAutores().add(autor);
 			}
 		}

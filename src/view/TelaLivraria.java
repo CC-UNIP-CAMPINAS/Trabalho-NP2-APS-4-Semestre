@@ -71,8 +71,8 @@ public class TelaLivraria extends JFrame{
 		JCheckBox isPublisher = new JCheckBox("Editoras");
 		JCheckBox byAz = new JCheckBox("Z-A");
 		JCheckBox byZa = new JCheckBox("A-Z");
-		JCheckBox byHprice = new JCheckBox("Maior Preço");
-		JCheckBox byLprice = new JCheckBox("Menor Preço");
+		JCheckBox byHprice = new JCheckBox("Maior Preï¿½o");
+		JCheckBox byLprice = new JCheckBox("Menor Preï¿½o");
 		isBook.setBackground(Color.decode("#4ECDC4"));
 		isAuthor.setBackground(Color.decode("#4ECDC4"));
 		isPublisher.setBackground(Color.decode("#4ECDC4"));
@@ -122,7 +122,7 @@ public class TelaLivraria extends JFrame{
 		
 		
 		
-		//Criando outros botões - AddLivro, AddEditora, AddAutor, Deletar, Modificar
+		//Criando outros botï¿½es - AddLivro, AddEditora, AddAutor, Deletar, Modificar
 		gbc.insets = new Insets(2,10,2,5);
 	    JButton btnAddBook = new JButton("Adicionar Livro");
 	    btnAddBook.setBackground(Color.decode("#1A535C"));
@@ -173,7 +173,7 @@ public class TelaLivraria extends JFrame{
 		String [] colunas = {"Livro", "Autor", "Editora"};
 		Object [][] dados = {
 			    {"Ervas medicinais", "Ana Monteiro", "Editora FTD"},
-			    {"Fuma um, toma um cha", "João da Silva", "Pearson "},
+			    {"Fuma um, toma um cha", "Joï¿½o da Silva", "Pearson "},
 			    {"Oloco, ta pegando fogo bixo", "Pedro Cascaes", "RELX Group"},
 			    
 		};
@@ -188,4 +188,5 @@ public class TelaLivraria extends JFrame{
 		this.add(sidebar, BorderLayout.EAST);
 		this.add(content, FlowLayout.RIGHT);
 	}
+	
 }

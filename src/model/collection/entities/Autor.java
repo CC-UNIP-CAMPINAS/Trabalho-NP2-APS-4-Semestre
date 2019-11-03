@@ -4,18 +4,29 @@ import java.util.Objects;
 
 public class Autor implements Comparable<Autor>{//agora implementa comparable para usar o método compareTo
 	private String nome;
-	private String sobreNome;
 	private int idAutor;
 	
-	public Autor(String nome, String sobreNome, int idAutor) {
+	public Autor(String nome, int idAutor) {
 		this.nome = nome;
-		this.sobreNome = sobreNome;
 		this.idAutor = idAutor;
 	}
 	
 	public int getIdAutor() {
 		return idAutor;
 	}
+	
+	public String getNomeAutor() {
+		return nome;
+	}
+	
+	 public static String juntaNomeAutor(String aNome, String aSobreNome){
+         String nome = aNome;
+         String sobreNome = aSobreNome;
+         nome = nome.replaceAll(" ","");
+         sobreNome = sobreNome.replaceAll("  ","");
+         nome = nome+" "+sobreNome;
+         return nome;
+}
 
 	@Override//TreeSet pede esse método, ele que vai identificar oq são Autores iguais
 	public boolean equals(Object outroObjeto) {
@@ -37,6 +48,6 @@ public class Autor implements Comparable<Autor>{//agora implementa comparable pa
 	
 	@Override
 	public String toString() {//usado para testar
-		return "nome=" + nome + "\n";
+		return "nome=" + nome + " ID=" + idAutor +"\n";
 	}
 }
