@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 import model.collection.Colecao;
 import model.collection.entities.Autor;
+import model.collection.entities.Livro;
 import model.dataBase.dao.DaoLivro;
 import view.TelaCriaLivro;
 
@@ -20,7 +21,7 @@ public class TelaCriaLivroController{
 	public class onBtCriarLivro implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {//chama o metodo de criação dentro de DaoLivro, esse método faz acesso ao banco, por isso está em dao
-			DaoLivro.criaLivro(TelaCriaLivro.tfTitle, TelaCriaLivro.tfIsbn, TelaCriaLivro.tfPrice, TelaCriaLivro.cbEditora);
+			DaoLivro.criaLivro(TelaCriaLivro.tfTitle, TelaCriaLivro.tfIsbn, TelaCriaLivro.tfPrice, TelaCriaLivro.cbEditora, TelaCriaLivro.tabelaAutoresSelecionados);
 		}
 		
 	}
@@ -41,6 +42,7 @@ public class TelaCriaLivroController{
 			if(escolha == 0) {// se a tabela selecionada for a geral ela manda sinal 0 e esse if acontece
 				populaTabelaAutoresSelecionados(TelaCriaLivro.dtmAutoresSelecionados, TelaCriaLivro.getAutorSelecionado());	
 				TelaCriaLivro.dtmAutores.removeRow(TelaCriaLivro.tabelaAutores.getSelectedRow());
+				System.out.println(TelaCriaLivro.tabelaAutores.getRowCount());
 				
 			}
 			else {//se não foi escolhido a outra tabela e esse else acontece

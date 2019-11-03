@@ -82,7 +82,6 @@ public class TelaCriaLivro extends JFrame{
 		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
 		add(barraRolagem2);
 		tabelaAutoresSelecionados.addMouseListener(new TelaCriaLivroController().new selecionaAutor(1));//coloca um evento de clique de mouse sempre que clicar em uma linha
-		
 	}
 	
 

@@ -45,6 +45,7 @@ public abstract class DaoAutor {
 			
 			while(rs.next()) {
 				Autor autor = new Autor(Autor.juntaNomeAutor(rs.getString(2), rs.getString(3)), rs.getInt(1));
+				System.out.println(rs.getString(3));
 				Colecao.getAutores().add(autor);
 			}
 		}

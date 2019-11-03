@@ -16,6 +16,10 @@ public class Editora implements Comparable<Editora>{
 	public int getIdEditora() {
 		return idEditora;
 	}
+	
+	public String getNomeEditora() {
+		return nome;
+	}
 
 	@Override//TreeSet pede esse método, ele que vai identificar oq são Autores iguais
 	public boolean equals(Object outroObjeto) {
