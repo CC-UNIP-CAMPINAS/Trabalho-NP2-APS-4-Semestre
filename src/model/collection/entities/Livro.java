@@ -45,8 +45,7 @@ public class Livro implements Comparable<Livro>{
 		String listaAutores="";
 		for (String autor : autores) {
 			listaAutores = listaAutores+autor+"; ";
-			System.out.println(autor);
 		}
-		return "Nome: "+titulo+"\nIsbn: "+isbn+"\nEditora: "+editora+"\nPreÃ§o: "+preco+"\nAutores: "+listaAutores;
+		return "Nome: "+titulo+"\nIsbn: "+isbn+"\nEditora: "+editora+"\nPreço: "+preco+"\nAutores: "+listaAutores+"\n";
 	}
 }

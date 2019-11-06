@@ -90,4 +90,8 @@ public class TelaCriaLivroController{
 			dtmAutoresSelecionados.addRow(data);
 	}
 	
+	public static void pegaAutoresTabelaSelecionados(DefaultTableModel dtmAutoresSelecionados) {
+		
+	}
+	
 }
