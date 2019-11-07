@@ -23,13 +23,15 @@ import javax.swing.JTextField;
 import controller.TelaLivrariaController; 
 
 public class TelaLivraria extends JFrame{
+	public static JButton btnAddBook;
+	
 	
 	public TelaLivraria() {
-		setVisible(true);
 		setSize(1024, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Livraria");
 		setLayout(new BorderLayout());
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setBackground(Color.decode("#E8E8E8"));
 		
 		//-------Header-------------------------------------------------------------------
@@ -124,7 +126,7 @@ public class TelaLivraria extends JFrame{
 		
 		//Criando outros bot�es - AddLivro, AddEditora, AddAutor, Deletar, Modificar
 		gbc.insets = new Insets(2,10,2,5);
-	    JButton btnAddBook = new JButton("Adicionar Livro");
+	    btnAddBook = new JButton("Adicionar Livro");
 	    btnAddBook.setBackground(Color.decode("#1A535C"));
 	    btnAddBook.setForeground(Color.decode("#F7FFF7"));
 		btnAddBook.addActionListener(new TelaLivrariaController().new onBtCriarLivro());
@@ -153,6 +155,7 @@ public class TelaLivraria extends JFrame{
 	    JButton btnDelete = new JButton("Deletar");
 	    btnDelete.setBackground(Color.decode("#1A535C"));
 	    btnDelete.setForeground(Color.decode("#F7FFF7"));
+	    btnDelete.addActionListener(new TelaLivrariaController().new onBtExcluirAutor());
 	    gbc.gridx = 2;
 		gbc.gridy = 3;
 	    sidebar.add(btnDelete, gbc);
@@ -176,7 +179,8 @@ public class TelaLivraria extends JFrame{
 			    {"Fuma um, toma um cha", "Jo�o da Silva", "Pearson "},
 			    {"Oloco, ta pegando fogo bixo", "Pedro Cascaes", "RELX Group"},
 			    
-		};
+		};	
+		
 		JTable tabela = new JTable(dados, colunas);
 		
 		JScrollPane barraRolagem = new JScrollPane(tabela);
@@ -187,6 +191,7 @@ public class TelaLivraria extends JFrame{
 		this.add(p1, BorderLayout.NORTH);
 		this.add(sidebar, BorderLayout.EAST);
 		this.add(content, FlowLayout.RIGHT);
+		setVisible(true);
 	}
 	
 }

@@ -18,7 +18,7 @@ import model.collection.Colecao;
 import model.collection.entities.Autor;
 
 public class TelaCriaLivro extends JFrame{
-	public static JButton btCriarLivro = new JButton("Criar");
+	public JButton btCriarLivro = new JButton("Criar");
 	public static JComboBox cbEditora = new JComboBox(Colecao.getEditoras().toArray());//Recebe o treeSet que foi transformado em array de objetos
 	public static JTextField tfTitle = new JTextField();
 	public static JTextField tfIsbn = new JTextField();
@@ -27,8 +27,13 @@ public class TelaCriaLivro extends JFrame{
 	public static DefaultTableModel dtmAutoresSelecionados;
 	public static JTable tabelaAutores;
 	public static JTable tabelaAutoresSelecionados;
+	private static TelaCriaLivro instancia;
 	
-	public TelaCriaLivro() {
+	static {
+		instancia = new TelaCriaLivro();
+	}
+	
+	private TelaCriaLivro() {
 		setVisible(true);
 		setSize(1000, 550);
 		setLayout(new FlowLayout());
@@ -82,9 +87,18 @@ public class TelaCriaLivro extends JFrame{
 		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
 		add(barraRolagem2);
 		tabelaAutoresSelecionados.addMouseListener(new TelaCriaLivroController().new selecionaAutor(1));//coloca um evento de clique de mouse sempre que clicar em uma linha
+		
+		
 	}
 	
-
+	public static synchronized TelaCriaLivro getInstance() {
+		if(instancia.isDisplayable() == false){
+			instancia = new TelaCriaLivro();
+		}
+		return instancia;
+	}
+	
+	
 	public static Autor getAutorSelecionado() {//seleciona a linha da tabela e pega os dados dessa linha
 		int linhaSelecionada = tabelaAutores.getSelectedRow();
 		int id   = Integer.parseInt(dtmAutores.getValueAt(linhaSelecionada, 0).toString());
@@ -100,4 +114,6 @@ public class TelaCriaLivro extends JFrame{
 		Autor autor = new Autor(nome, id);
 		return autor;
 	}
+	
+	
 }

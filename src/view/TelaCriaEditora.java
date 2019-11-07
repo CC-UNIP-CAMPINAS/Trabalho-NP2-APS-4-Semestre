@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 import controller.TelaCriaEditoraController;
 
 public class TelaCriaEditora extends JFrame{
-	public static JButton btCriarEditora = new JButton("Criar");
+	public JButton btCriarEditora = new JButton("Criar");
 	public static JTextField tfNome = new JTextField();
 	public static JTextField tfUrl = new JTextField();
 	public static JTextField tfId = new JTextField();

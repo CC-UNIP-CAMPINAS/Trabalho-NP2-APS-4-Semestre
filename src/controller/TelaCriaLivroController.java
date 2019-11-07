@@ -9,7 +9,6 @@ import javax.swing.table.DefaultTableModel;
 
 import model.collection.Colecao;
 import model.collection.entities.Autor;
-import model.collection.entities.Livro;
 import model.dataBase.dao.DaoLivro;
 import view.TelaCriaLivro;
 

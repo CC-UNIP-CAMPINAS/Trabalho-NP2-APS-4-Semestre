@@ -11,7 +11,7 @@ import controller.TelaCriaAutorController;
 
 public class TelaCriaAutor extends JFrame{
 	
-	public static JButton btCriarAutor = new JButton("Criar");
+	public JButton btCriarAutor = new JButton("Criar");
 	public static JTextField tfNome = new JTextField();
 	public static JTextField tfSobreNome = new JTextField();
 	public static JTextField tfId = new JTextField();
