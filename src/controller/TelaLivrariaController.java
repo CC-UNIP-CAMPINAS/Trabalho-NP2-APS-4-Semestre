@@ -42,7 +42,7 @@ public class TelaLivrariaController{
 	public class onBtExcluirAutor implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new TelaExcluiAutor();//chama outra tela
+			TelaExcluiAutor.getInstance();//chama outra tela
 		}
 	}
 }

@@ -1,5 +1,6 @@
 package model.collection;
 
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 import model.collection.entities.Autor;
@@ -11,6 +12,7 @@ public abstract class Colecao {
 	private static TreeSet<Autor> autores = new TreeSet<>();//treeset precisa de métodos a mais que estarão nas entidades Autor
 	private static TreeSet<Editora> editoras = new TreeSet<>();//treeset precisa de métodos a mais que estarão nas entidades Editora
 	private static TreeSet<Livro> livros = new TreeSet<>();//treeset precisa de métodos a mais que estarão nas entidades Livro
+	private static ArrayList<Autor> autoresTemporario = new ArrayList<>();//treeset precisa de métodos a mais que estarão nas entidades Livro
 	
 	public static TreeSet<Autor> getAutores() {
 		return autores;
@@ -22,5 +24,9 @@ public abstract class Colecao {
 	
 	public static TreeSet<Livro> getLivros() {
 		return livros;
+	}
+
+	public static ArrayList<Autor> getAutoresTemporario() {
+		return autoresTemporario;
 	}
 }

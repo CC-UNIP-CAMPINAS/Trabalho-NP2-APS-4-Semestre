@@ -59,4 +59,27 @@ public abstract class DaoAutor {
 		}
 	}
 	
+	//método que busca no banco e adiciona os autores na devida coleção
+	public static void buscarAutor(JTextField tfAutor) {
+		try {
+			Colecao.getAutoresTemporario().clear();
+			st = Banco.getConnection().prepareStatement("Select * from authors where name ilike ? or fname ilike ?");
+			st.setString(1, "%"+tfAutor.getText()+"%");
+			st.setString(2, "%"+tfAutor.getText()+"%");
+			rs = st.executeQuery();
+			
+			while(rs.next()) {
+				Autor autor = new Autor(Autor.juntaNomeAutor(rs.getString(2), rs.getString(3)), rs.getInt(1));
+				Colecao.getAutoresTemporario().add(autor);		
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally{//Fecha o st, rs e o connection
+			Banco.closeConnection();
+			Banco.closeStatement(st);
+			Banco.closeResultSet(rs);
+		}
+	}
 }

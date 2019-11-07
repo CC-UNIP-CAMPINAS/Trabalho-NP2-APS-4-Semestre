@@ -1,39 +1,106 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
-import controller.TelaCriaAutorController;
+import controller.TelaCriaLivroController;
+import controller.TelaExcluiAutorController;
+import model.collection.entities.Autor;
 
 public class TelaExcluiAutor extends JFrame{
-	
-	public static JButton btCriarAutor = new JButton("Criar");
+	public JButton btBuscaAutor = new JButton("Buscar");
 	public static JTextField tfNome = new JTextField();
-	public static JTextField tfSobreNome = new JTextField();
-	public static JTextField tfId = new JTextField();
+	public static DefaultTableModel dtmAutores;
+	public static DefaultTableModel dtmAutoresSelecionados;
+	public static JTable tabelaAutores;
+	public static JTable tabelaAutoresSelecionados;
+	private static TelaExcluiAutor instancia;
 	
-	public TelaExcluiAutor() {
+	static {
+		instancia = new TelaExcluiAutor();
+	}
+	
+	private TelaExcluiAutor() {
 		setVisible(true);
-		setSize(800, 600);
+		setSize(1000, 550);
 		setLayout(new FlowLayout());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("Autor");
+		setTitle("Livro");
 		
 		tfNome.setPreferredSize(new Dimension(200,20));
 		add(tfNome);
 		
-		tfSobreNome.setPreferredSize(new Dimension(200,20));
-		add(tfSobreNome);
+		add(btBuscaAutor);
+		btBuscaAutor.addActionListener(new TelaExcluiAutorController().new onBtBuscarAutor());
 		
-		tfId.setPreferredSize(new Dimension(100,20));
-		add(tfId);
+		//tabela com todos os autores
+		String [] colunas = {"ID", "Autor"};
+		Object [][] dados = new Object[0][2];
+		dtmAutores = new DefaultTableModel(dados, colunas){
+			@Override
+			public boolean isCellEditable(int row, int column) { 
+				return false; //Isso faz a celula da tabela não ser editavel
+			}
+		};	    
+		tabelaAutores = new JTable(dtmAutores);
+		JScrollPane barraRolagem = new JScrollPane(tabelaAutores);
+		barraRolagem.getViewport().setBackground(Color.decode("#F7FFF7"));
+		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
+		add(barraRolagem);
+		tabelaAutores.addMouseListener(new TelaCriaLivroController().new selecionaAutor(0));//coloca um evento de clique de mouse sempre que clicar em uma linha
 		
-		add(btCriarAutor);
-		btCriarAutor.addActionListener(new TelaCriaAutorController().new onBtCriarAutor());
+		
+		//Tabela com os autores selecionados
+		String [] colunas2 = {"ID", "Autor"};
+		Object [][] dados2 = new Object[0][2];
+		dtmAutoresSelecionados = new DefaultTableModel(dados2, colunas2){
+			@Override
+			public boolean isCellEditable(int row, int column) { 
+				return false; //Isso faz a celula da tabela não ser editavel
+			}
+		};
+		tabelaAutoresSelecionados = new JTable(dtmAutoresSelecionados);		
+		JScrollPane barraRolagem2 = new JScrollPane(tabelaAutoresSelecionados);
+		barraRolagem.getViewport().setBackground(Color.decode("#F7FFF7"));
+		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
+		add(barraRolagem2);
+		tabelaAutoresSelecionados.addMouseListener(new TelaCriaLivroController().new selecionaAutor(1));//coloca um evento de clique de mouse sempre que clicar em uma linha
+		
 		
 	}
+	
+	public static synchronized TelaExcluiAutor getInstance() {
+		if(instancia.isDisplayable() == false){
+			instancia = new TelaExcluiAutor();
+		}
+		return instancia;
+	}
+	
+	
+	public static Autor getAutorSelecionado() {//seleciona a linha da tabela e pega os dados dessa linha
+		int linhaSelecionada = tabelaAutores.getSelectedRow();
+		int id   = Integer.parseInt(dtmAutores.getValueAt(linhaSelecionada, 0).toString());
+		String nome = dtmAutores.getValueAt(linhaSelecionada, 1).toString();
+		Autor autor = new Autor(nome, id);
+		return autor;
+	}
+	
+	public static Autor getAutorSelecionadoInverso() {//seleciona a linha da tabela e pega os dados dessa linha
+		int linhaSelecionada = tabelaAutoresSelecionados.getSelectedRow();
+		int id   = Integer.parseInt(dtmAutoresSelecionados.getValueAt(linhaSelecionada, 0).toString());
+		String nome = dtmAutoresSelecionados.getValueAt(linhaSelecionada, 1).toString();
+		Autor autor = new Autor(nome, id);
+		return autor;
+	}
+	
+	
 }
