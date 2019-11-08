@@ -29,8 +29,9 @@ public class TelaExcluir extends JFrame{
 		add(btExcluirEditora);
 		add(btExcluirLivro);
 		
-		btExcluirAutor.addActionListener(new TelaExcluirController().new onBtExcluirAutor());
-		btExcluirEditora.addActionListener(new TelaExcluirController().new onBtExcluirEditora());
+		btExcluirAutor.addActionListener(new TelaExcluirController().new OnBtExcluirAutor());
+		btExcluirEditora.addActionListener(new TelaExcluirController().new OnBtExcluirEditora());
+		btExcluirLivro.addActionListener(new TelaExcluirController().new OnBtExcluirLivro());
 		
 		pack();
 		setVisible(true);

@@ -60,7 +60,7 @@ static ResultSet rs = null;
 		}
 	}
 	
-	public static void CarregaLivro() {
+	public static void carregaLivro() {
 		try {
 			String query = 
 					"select * from books b inner join booksauthors ba on(b.isbn = ba.isbn) " + 
@@ -93,4 +93,61 @@ static ResultSet rs = null;
 			Banco.closeResultSet(rs);
 		}
 	}
+	
+	//método que busca no banco e adiciona os autores na devida coleção
+		public static boolean buscarLivro(JTextField tfLivro) {
+			boolean status = false;
+			try {
+				Colecao.getAutoresTemporario().clear();
+				st = Banco.getConnection().prepareStatement(
+						"select * from books b inner join publishers p on(p.publisher_id = b.publisher_id) "
+						+ "where b.title ilike ? or p.name ilike ?;");
+				st.setString(1, "%"+tfLivro.getText()+"%");
+				st.setString(2, "%"+tfLivro.getText()+"%");
+				rs = st.executeQuery();
+				if(rs.next()) {
+					do {
+						Livro livro = new Livro(rs.getString(1), rs.getString(2), rs.getString(6), rs.getDouble(4));
+						Colecao.getLivrosTemporario().add(livro);	
+					}
+					while(rs.next());
+					status = true;
+				}
+				else {
+					status = false;
+				}
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			finally{//Fecha o st, rs e o connection
+				Banco.closeConnection();
+				Banco.closeStatement(st);
+				Banco.closeResultSet(rs);
+			}
+			return status;
+		}
+
+		public static int excluiLivro(JTable tabelaLivros) {
+			int count = (tabelaLivros.getRowCount());
+			try {
+				st = Banco.getConnection().prepareStatement("delete from books where isbn = ?");
+				int i;	
+				for(i=0; i<count; i++) {
+					String isbn = tabelaLivros.getValueAt(i, 1).toString();
+					st.setString(1, isbn);
+					st.execute();
+					Colecao.getLivros().removeIf(livro -> livro.getIsbn().equals(isbn));
+				}
+				return count;
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			finally{//Fecha o st, rs e o connection
+				Banco.closeConnection();
+				Banco.closeStatement(st);
+			}
+			return count;
+		}
 }

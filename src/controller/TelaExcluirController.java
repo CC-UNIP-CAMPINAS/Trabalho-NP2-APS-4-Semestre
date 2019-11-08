@@ -6,13 +6,14 @@ import java.awt.event.ActionListener;
 import view.TelaCriaLivro;
 import view.TelaExcluiAutor;
 import view.TelaExcluiEditora;
+import view.TelaExcluiLivro;
 
 //classe responsavel em controlar a TelaLivraria(Tela principal)
 //aqui vai ter todas as chamadas de ações para aquela tela
 public class TelaExcluirController{
 	
 	//Ação do botão para criar autor
-	public class onBtExcluirAutor implements ActionListener{
+	public class OnBtExcluirAutor implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			TelaExcluiAutor.getInstance();
@@ -20,7 +21,7 @@ public class TelaExcluirController{
 	}
 	
 	//Ação do botão para criar Editora
-	public class onBtExcluirEditora implements ActionListener{
+	public class OnBtExcluirEditora implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			TelaExcluiEditora.getInstance();
@@ -28,10 +29,10 @@ public class TelaExcluirController{
 	}
 	
 	//Ação do botão para criar Livro
-	public class onBtCriarLivro implements ActionListener{
+	public class OnBtExcluirLivro implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-				TelaCriaLivro.getInstance();
+				TelaExcluiLivro.getInstance();
 				
 		}
 	}

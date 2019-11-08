@@ -14,6 +14,7 @@ public abstract class Colecao {
 	private static TreeSet<Livro> livros = new TreeSet<>();//treeset precisa de métodos a mais que estarão nas entidades Livro
 	private static ArrayList<Autor> autoresTemporario = new ArrayList<>();//treeset precisa de métodos a mais que estarão nas entidades Livro
 	private static ArrayList<Editora> editorasTemporario = new ArrayList<>();//treeset precisa de métodos a mais que estarão nas entidades Livro
+	private static ArrayList<Livro> livrosTemporario = new ArrayList<>();//treeset precisa de métodos a mais que estarão nas entidades Livro
 	
 	public static TreeSet<Autor> getAutores() {
 		return autores;
@@ -33,5 +34,9 @@ public abstract class Colecao {
 
 	public static ArrayList<Editora> getEditorasTemporario() {
 		return editorasTemporario;
+	}
+
+	public static ArrayList<Livro> getLivrosTemporario() {
+		return livrosTemporario;
 	}
 }

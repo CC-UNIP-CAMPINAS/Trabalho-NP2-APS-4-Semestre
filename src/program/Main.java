@@ -15,7 +15,7 @@ public class Main {
 		new TelaLivraria();
 		DaoAutor.carregaAutor();
 		DaoEditora.carregaEditora();
-		DaoLivro.CarregaLivro();
+		DaoLivro.carregaLivro();
 		
 		//to testando pra ver se os autores são adicionados na coleção
 		for(Autor a : Colecao.getAutores()) {
