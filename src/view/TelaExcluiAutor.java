@@ -12,12 +12,12 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import controller.TelaCriaLivroController;
 import controller.TelaExcluiAutorController;
 import model.collection.entities.Autor;
 
 public class TelaExcluiAutor extends JFrame{
 	public JButton btBuscaAutor = new JButton("Buscar");
+	public JButton btExcluirAutor = new JButton("Excluir");
 	public static JTextField tfNome = new JTextField();
 	public static DefaultTableModel dtmAutores;
 	public static DefaultTableModel dtmAutoresSelecionados;
@@ -30,11 +30,10 @@ public class TelaExcluiAutor extends JFrame{
 	}
 	
 	private TelaExcluiAutor() {
-		setVisible(true);
-		setSize(1000, 550);
+		setSize(1250, 550);
 		setLayout(new FlowLayout());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("Livro");
+		setTitle("Exclui Autor");
 		
 		tfNome.setPreferredSize(new Dimension(200,20));
 		add(tfNome);
@@ -56,7 +55,7 @@ public class TelaExcluiAutor extends JFrame{
 		barraRolagem.getViewport().setBackground(Color.decode("#F7FFF7"));
 		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
 		add(barraRolagem);
-		tabelaAutores.addMouseListener(new TelaCriaLivroController().new selecionaAutor(0));//coloca um evento de clique de mouse sempre que clicar em uma linha
+		tabelaAutores.addMouseListener(new TelaExcluiAutorController().new selecionaAutor(0));//coloca um evento de clique de mouse sempre que clicar em uma linha
 		
 		
 		//Tabela com os autores selecionados
@@ -73,13 +72,19 @@ public class TelaExcluiAutor extends JFrame{
 		barraRolagem.getViewport().setBackground(Color.decode("#F7FFF7"));
 		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
 		add(barraRolagem2);
-		tabelaAutoresSelecionados.addMouseListener(new TelaCriaLivroController().new selecionaAutor(1));//coloca um evento de clique de mouse sempre que clicar em uma linha
+		tabelaAutoresSelecionados.addMouseListener(new TelaExcluiAutorController().new selecionaAutor(1));//coloca um evento de clique de mouse sempre que clicar em uma linha	
 		
+		btExcluirAutor.addActionListener(new TelaExcluiAutorController().new onBtExcluiAutor());
+		add(btExcluirAutor);
 		
+		setVisible(true);
 	}
 	
+	
+	//GETS
+	
 	public static synchronized TelaExcluiAutor getInstance() {
-		if(instancia.isDisplayable() == false){
+		if(instancia.isDisplayable() == false){//pega unica instancia da classe se ela esta criada, se não o programa cria
 			instancia = new TelaExcluiAutor();
 		}
 		return instancia;
@@ -100,7 +105,5 @@ public class TelaExcluiAutor extends JFrame{
 		String nome = dtmAutoresSelecionados.getValueAt(linhaSelecionada, 1).toString();
 		Autor autor = new Autor(nome, id);
 		return autor;
-	}
-	
-	
+	}	
 }
