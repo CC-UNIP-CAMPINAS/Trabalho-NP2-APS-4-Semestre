@@ -91,6 +91,8 @@ public class TelaCriaLivro extends JFrame{
 		
 	}
 	
+	//GETS
+	
 	public static synchronized TelaCriaLivro getInstance() {
 		if(instancia.isDisplayable() == false){
 			instancia = new TelaCriaLivro();

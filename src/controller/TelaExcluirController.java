@@ -3,27 +3,24 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.TelaCriaAutor;
 import view.TelaCriaEditora;
 import view.TelaCriaLivro;
-import view.TelaExcluir;
+import view.TelaExcluiAutor;
 
 //classe responsavel em controlar a TelaLivraria(Tela principal)
 //aqui vai ter todas as chamadas de ações para aquela tela
-public class TelaLivrariaController{
+public class TelaExcluirController{
 	
-	
-
 	//Ação do botão para criar autor
-	public class onBtCriarAutor implements ActionListener{
+	public class onBtExcluirAutor implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new TelaCriaAutor();//chama outra tela
+			TelaExcluiAutor.getInstance();
 		}
 	}
 	
 	//Ação do botão para criar Editora
-	public class onBtCriarEditora implements ActionListener{
+	public class onBtExcluirEditora implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			new TelaCriaEditora();//chama outra tela
@@ -36,13 +33,6 @@ public class TelaLivrariaController{
 		public void actionPerformed(ActionEvent e) {
 				TelaCriaLivro.getInstance();
 				
-		}
-	}
-	
-	public class onBtExcluir implements ActionListener{
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			TelaExcluir.getInstance();//chama outra tela
 		}
 	}
 }

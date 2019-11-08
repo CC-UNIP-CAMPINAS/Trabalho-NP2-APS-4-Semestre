@@ -155,7 +155,7 @@ public class TelaLivraria extends JFrame{
 	    JButton btnDelete = new JButton("Deletar");
 	    btnDelete.setBackground(Color.decode("#1A535C"));
 	    btnDelete.setForeground(Color.decode("#F7FFF7"));
-	    btnDelete.addActionListener(new TelaLivrariaController().new onBtExcluirAutor());
+	    btnDelete.addActionListener(new TelaLivrariaController().new onBtExcluir());
 	    gbc.gridx = 2;
 		gbc.gridy = 3;
 	    sidebar.add(btnDelete, gbc);
