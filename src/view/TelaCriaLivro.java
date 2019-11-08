@@ -19,7 +19,7 @@ import model.collection.entities.Autor;
 
 public class TelaCriaLivro extends JFrame{
 	public JButton btCriarLivro = new JButton("Criar");
-	public static JComboBox cbEditora = new JComboBox(Colecao.getEditoras().toArray());//Recebe o treeSet que foi transformado em array de objetos
+	public static JComboBox cbEditora;//Recebe o treeSet que foi transformado em array de objetos
 	public static JTextField tfTitle = new JTextField();
 	public static JTextField tfIsbn = new JTextField();
 	public static JTextField tfPrice = new JTextField();
@@ -52,6 +52,7 @@ public class TelaCriaLivro extends JFrame{
 		add(btCriarLivro);
 		btCriarLivro.addActionListener(new TelaCriaLivroController().new onBtCriarLivro());
 		
+		cbEditora = new JComboBox(Colecao.getEditoras().toArray());
 		add(cbEditora);
 		
 		//tabela com todos os autores
