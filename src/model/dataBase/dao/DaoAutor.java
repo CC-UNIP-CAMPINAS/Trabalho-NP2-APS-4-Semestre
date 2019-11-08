@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import model.collection.Colecao;
@@ -60,17 +61,24 @@ public abstract class DaoAutor {
 	}
 	
 	//método que busca no banco e adiciona os autores na devida coleção
-	public static void buscarAutor(JTextField tfAutor) {
+	public static boolean buscarAutor(JTextField tfAutor) {
+		boolean status = false;
 		try {
 			Colecao.getAutoresTemporario().clear();
 			st = Banco.getConnection().prepareStatement("Select * from authors where name ilike ? or fname ilike ?");
 			st.setString(1, "%"+tfAutor.getText()+"%");
 			st.setString(2, "%"+tfAutor.getText()+"%");
 			rs = st.executeQuery();
-			
-			while(rs.next()) {
-				Autor autor = new Autor(Autor.juntaNomeAutor(rs.getString(2), rs.getString(3)), rs.getInt(1));
-				Colecao.getAutoresTemporario().add(autor);		
+			if(rs.next()) {
+				do {
+					Autor autor = new Autor(Autor.juntaNomeAutor(rs.getString(2), rs.getString(3)), rs.getInt(1));
+					Colecao.getAutoresTemporario().add(autor);	
+				}
+				while(rs.next());
+				status = true;
+			}
+			else {
+				status = false;
 			}
 		}
 		catch(SQLException e) {
@@ -81,5 +89,29 @@ public abstract class DaoAutor {
 			Banco.closeStatement(st);
 			Banco.closeResultSet(rs);
 		}
+		return status;
+	}
+
+	public static int excluiAutor(JTable tabelaAutores) {
+		int count = (tabelaAutores.getRowCount());
+		try {
+			st = Banco.getConnection().prepareStatement("delete from authors where author_id = ?");
+			int i;	
+			for(i=0; i<count; i++) {
+				int idAutor = Integer.parseInt((tabelaAutores.getValueAt(i, 0).toString()));
+				st.setInt(1, idAutor);
+				st.execute();
+				Colecao.getAutores().removeIf(autor ->autor.getIdAutor() == idAutor);
+			}
+			return count;
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally{//Fecha o st, rs e o connection
+			Banco.closeConnection();
+			Banco.closeStatement(st);
+		}
+		return count;
 	}
 }
