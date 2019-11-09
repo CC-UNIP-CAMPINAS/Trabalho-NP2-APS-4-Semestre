@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import controller.TelaCriaAutorController;
@@ -23,13 +24,22 @@ public class TelaCriaAutor extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Autor");
 		
+		JLabel selType = new JLabel(); 		
+		selType.setText("Nome:");
 		tfNome.setPreferredSize(new Dimension(200,20));
+		add(selType);
 		add(tfNome);
 		
+		JLabel selType2 = new JLabel(); 		
+		selType2.setText("SobreNome:");
 		tfSobreNome.setPreferredSize(new Dimension(200,20));
+		add(selType2);
 		add(tfSobreNome);
 		
+		JLabel selType3 = new JLabel(); 		
+		selType3.setText("Id:");
 		tfId.setPreferredSize(new Dimension(100,20));
+		add(selType3);
 		add(tfId);
 		
 		add(btCriarAutor);

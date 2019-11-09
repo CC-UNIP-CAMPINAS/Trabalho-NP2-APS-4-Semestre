@@ -8,6 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -41,12 +42,21 @@ public class TelaCriaLivro extends JFrame{
 		setTitle("Livro");
 		
 		tfTitle.setPreferredSize(new Dimension(200,20));
+		JLabel selType = new JLabel(); 		
+		selType.setText("Titulo:");
+		add(selType);
 		add(tfTitle);
 		
 		tfIsbn.setPreferredSize(new Dimension(200,20));
+		JLabel selType1 = new JLabel(); 		
+		selType1.setText("Isbn:");
+		add(selType1);
 		add(tfIsbn);
 		
 		tfPrice.setPreferredSize(new Dimension(100,20));
+		JLabel selType2 = new JLabel(); 		
+		selType2.setText("Price:");
+		add(selType2);
 		add(tfPrice);
 		
 		add(btCriarLivro);

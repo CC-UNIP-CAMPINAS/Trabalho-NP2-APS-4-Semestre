@@ -8,6 +8,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -17,14 +19,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import controller.TelaLivrariaController; 
 
 public class TelaLivraria extends JFrame{
 	public static JButton btnAddBook;
-	
+	TableContent tabela = new TableContent();
 	
 	public TelaLivraria() {
 		setSize(1024, 600);
@@ -63,6 +64,15 @@ public class TelaLivraria extends JFrame{
 		JButton btnSearch = new JButton("Buscar");
 		btnSearch.setBackground(Color.decode("#1A535C"));
 		btnSearch.setForeground(Color.decode("#F7FFF7"));
+		btnSearch.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				TableContent.pesquisar(tabela.getModelo());
+			}
+			
+		});
 		gbc.gridx = 2;
 		gbc.gridy = 0;
 		sidebar.add(btnSearch, gbc);
@@ -171,27 +181,19 @@ public class TelaLivraria extends JFrame{
 		JPanel content = new JPanel();
 		content.setPreferredSize(new Dimension(800, 300));
 		content.setBackground(Color.decode("#F7FFF7"));
-		content.setLayout(new GridLayout());
+		content.setLayout(new BorderLayout());
 		
-		String [] colunas = {"Livro", "Autor", "Editora"};
-		Object [][] dados = {
-			    {"Ervas medicinais", "Ana Monteiro", "Editora FTD"},
-			    {"Fuma um, toma um cha", "Jo�o da Silva", "Pearson "},
-			    {"Oloco, ta pegando fogo bixo", "Pedro Cascaes", "RELX Group"},
-			    
-		};	
-		
-		JTable tabela = new JTable(dados, colunas);
-		
-		JScrollPane barraRolagem = new JScrollPane(tabela);
+		JScrollPane barraRolagem = new JScrollPane(tabela.getTabela());
 		barraRolagem.getViewport().setBackground(Color.decode("#F7FFF7"));
 		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
 		content.add(barraRolagem);
+		content.add(tabela.getTabela());
 		
 		this.add(p1, BorderLayout.NORTH);
 		this.add(sidebar, BorderLayout.EAST);
 		this.add(content, FlowLayout.RIGHT);
 		setVisible(true);
+		
+		
 	}
-	
 }
