@@ -18,15 +18,18 @@ public abstract class DaoAutor {
 	
 	
 	//Cria um autor no banco de dados
-	public static void criaAutor(JTextField tfNome, JTextField tfSobreNome, JTextField tfId) {
+	public static void criaAutor(JTextField tfNome, JTextField tfSobreNome) {
 		try {
+			st = Banco.getConnection().prepareStatement("Select max(author_id) from authors");
+			rs = st.executeQuery();
+			rs.next();
 			st = Banco.getConnection().prepareStatement("INSERT INTO authors VALUES (?, ?, ?)");
-			st.setInt(1, Integer.parseInt(tfId.getText()));
+			st.setInt(1, (rs.getInt(1)+1));
 			st.setString(2, tfNome.getText());
 			st.setString(3, tfSobreNome.getText());
 			st.execute();
 			
-			Autor autor = new Autor(tfNome.getText()+" "+tfSobreNome.getText(), Integer.parseInt(tfId.getText()));
+			Autor autor = new Autor(tfNome.getText()+" "+tfSobreNome.getText(), (rs.getInt(1)+1));
 			Colecao.getAutores().add(autor);
 		}
 		catch(SQLException e) {
@@ -35,6 +38,7 @@ public abstract class DaoAutor {
 		finally{//Fecha o st e o connection
 			Banco.closeConnection();
 			Banco.closeStatement(st);
+			Banco.closeResultSet(rs);
 		}
 	}
 	

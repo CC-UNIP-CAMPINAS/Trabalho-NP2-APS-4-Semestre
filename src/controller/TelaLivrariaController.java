@@ -18,7 +18,7 @@ public class TelaLivrariaController{
 	public class onBtCriarAutor implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new TelaCriaAutor();//chama outra tela
+			TelaCriaAutor.getInstance().show();//chama outra tela
 		}
 	}
 	
@@ -34,7 +34,7 @@ public class TelaLivrariaController{
 	public class onBtCriarLivro implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-				TelaCriaLivro.getInstance();
+				TelaCriaLivro.getInstance().show();
 				
 		}
 	}
