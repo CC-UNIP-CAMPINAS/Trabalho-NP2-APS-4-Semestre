@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import controller.TelaCriaEditoraController;
@@ -22,13 +23,22 @@ public class TelaCriaEditora extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Editora");
 		
+		JLabel selType = new JLabel(); 		
+		selType.setText("Nome:");
 		tfNome.setPreferredSize(new Dimension(200,20));
+		add(selType);
 		add(tfNome);
 		
+		JLabel selType1 = new JLabel(); 		
+		selType1.setText("Site:");
 		tfUrl.setPreferredSize(new Dimension(200,20));
+		add(selType1);
 		add(tfUrl);
 		
+		JLabel selType2 = new JLabel(); 		
+		selType2.setText("Id:");
 		tfId.setPreferredSize(new Dimension(100,20));
+		add(selType2);
 		add(tfId);
 		
 		add(btCriarEditora);

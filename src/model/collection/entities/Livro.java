@@ -10,6 +10,42 @@ public class Livro implements Comparable<Livro>{
 	private double preco; 
 	private ArrayList<String> autores;
 	
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public String getEditora() {
+		return editora;
+	}
+
+	public void setEditora(String editora) {
+		this.editora = editora;
+	}
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+
+	public void setAutores(ArrayList<String> autores) {
+		this.autores = autores;
+	}
+	
 	public Livro(String titulo, String isbn, String editora, double preco) {
 		autores = new ArrayList<>();
 		this.titulo = titulo;
