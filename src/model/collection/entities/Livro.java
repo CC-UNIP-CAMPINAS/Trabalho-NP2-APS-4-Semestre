@@ -57,22 +57,6 @@ public class Livro implements Comparable<Livro>{
 	public ArrayList<String> getAutores() {
 		return autores;
 	}
-	
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public String getIsbn() {
-		return isbn;
-	}
-
-	public String getEditora() {
-		return editora;
-	}
-
-	public double getPreco() {
-		return preco;
-	}
 
 	@Override//TreeSet pede esse método, ele que vai identificar oq são Livros iguais
 	public boolean equals(Object outroObjeto) {
