@@ -17,21 +17,21 @@ public class TelaCriaAutorController {
 	
 	public class onBtCriarAutor implements ActionListener{
 		public void actionPerformed(ActionEvent e) {//chama o metodo de criação dentro de DaoAutor, esse método faz acesso ao banco, por isso está em dao
-			if(TelaCriaAutor.tfNome.getText().isEmpty() || TelaCriaAutor.tfSobreNome.getText().isEmpty()){
+			if(TelaCriaAutor.getTfNome().getText().isEmpty() || TelaCriaAutor.getTfSobreNome().getText().isEmpty()){
 				JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
 			}
 			else {
 				if(JOptionPane.showConfirmDialog(null, "Deseja mesmo criar um autor?", "Atenção", JOptionPane.CANCEL_OPTION) == 0){
-					DaoAutor.criaAutor(TelaCriaAutor.tfNome, TelaCriaAutor.tfSobreNome);
-					populaTabelaAutores(TelaCriaAutor.dtmAutores);
+					DaoAutor.criaAutor(TelaCriaAutor.getTfNome(), TelaCriaAutor.getTfSobreNome());
+					populaTabelaAutores(TelaCriaAutor.getDtmAutores());
 					JOptionPane.showMessageDialog(null, "Autor criado!");
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Operação cancelada!");
 				}
-				TelaCriaAutor.tfNome.setText("");
-				TelaCriaAutor.tfSobreNome.setText("");
-			}	
+			}
+			TelaCriaAutor.getTfNome().setText("");
+			TelaCriaAutor.getTfSobreNome().setText("");
 		}
 	}
 	

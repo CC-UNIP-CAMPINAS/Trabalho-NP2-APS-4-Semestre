@@ -26,7 +26,7 @@ public class TelaLivrariaController{
 	public class onBtCriarEditora implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new TelaCriaEditora();//chama outra tela
+			TelaCriaEditora.getInstance().show();//chama outra tela
 		}
 	}
 	
