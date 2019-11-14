@@ -15,11 +15,13 @@ public class TelaExcluir extends JFrame{
 	
 	static {
 		instancia = new TelaExcluir();
+		//instancia.setVisible(true);
 	}
 	
 	private TelaExcluir() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new FlowLayout());
+		setLocationRelativeTo(null);
 		
 		btExcluirAutor = new JButton("Excluir Autor");
 		btExcluirLivro = new JButton("Excluir Livro");
@@ -41,6 +43,7 @@ public class TelaExcluir extends JFrame{
 		if(instancia.isDisplayable() == false){
 			instancia = new TelaExcluir();
 		}
+		instancia.setVisible(true);
 		return instancia;
 	}
 }

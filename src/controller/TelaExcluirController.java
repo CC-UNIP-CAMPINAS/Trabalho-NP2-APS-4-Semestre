@@ -7,6 +7,7 @@ import view.TelaCriaLivro;
 import view.TelaExcluiAutor;
 import view.TelaExcluiEditora;
 import view.TelaExcluiLivro;
+import view.TelaExcluir;
 
 //classe responsavel em controlar a TelaLivraria(Tela principal)
 //aqui vai ter todas as chamadas de ações para aquela tela
@@ -17,6 +18,7 @@ public class TelaExcluirController{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			TelaExcluiAutor.getInstance();
+			TelaExcluir.getInstance().setVisible(false);
 		}
 	}
 	
@@ -25,6 +27,7 @@ public class TelaExcluirController{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			TelaExcluiEditora.getInstance();
+			TelaExcluir.getInstance().setVisible(false);
 		}
 	}
 	
@@ -33,7 +36,7 @@ public class TelaExcluirController{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 				TelaExcluiLivro.getInstance();
-				
+				TelaExcluir.getInstance().setVisible(false);
 		}
 	}
 }
