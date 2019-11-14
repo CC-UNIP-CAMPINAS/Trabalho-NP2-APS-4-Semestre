@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -13,6 +14,7 @@ import model.collection.entities.Autor;
 import model.collection.entities.Editora;
 import model.collection.entities.Livro;
 import model.dataBase.Banco;
+import view.TelaCriaLivro;
 
 //Essa classe vai ficar todos os tipos de acesso aos dados do livro no postgre
 public abstract class DaoLivro {
@@ -45,6 +47,7 @@ static ResultSet rs = null;
 				j++;
 			}
 			Colecao.getLivros().add(livro);
+			JOptionPane.showMessageDialog(null, "Livro criado!");
 
 			System.out.println("\n--------------------------------------------\n");
 			for (Livro liv : Colecao.getLivros()) {
@@ -53,6 +56,9 @@ static ResultSet rs = null;
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
+		}
+		catch(NumberFormatException a) {
+			JOptionPane.showMessageDialog(null, "Valor incorreto para preço!\n''"+TelaCriaLivro.getTfPrice().getText()+"'' não é um número!");
 		}
 		finally{//Fecha o st e o connection
 			Banco.closeConnection();
@@ -98,7 +104,7 @@ static ResultSet rs = null;
 		public static boolean buscarLivro(JTextField tfLivro) {
 			boolean status = false;
 			try {
-				Colecao.getAutoresTemporario().clear();
+				Colecao.getLivrosTemporario().clear();
 				st = Banco.getConnection().prepareStatement(
 						"select * from books b inner join publishers p on(p.publisher_id = b.publisher_id) "
 						+ "where b.title ilike ? or p.name ilike ?;");
@@ -143,7 +149,7 @@ static ResultSet rs = null;
 			}
 			catch(SQLException e) {
 				e.printStackTrace();
-			}
+			}	
 			finally{//Fecha o st, rs e o connection
 				Banco.closeConnection();
 				Banco.closeStatement(st);

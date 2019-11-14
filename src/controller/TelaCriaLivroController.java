@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import model.collection.Colecao;
@@ -17,39 +18,60 @@ import view.TelaCriaLivro;
 public class TelaCriaLivroController{
 	
 	//ação do botão
-	public class onBtCriarLivro implements ActionListener{
+	public class OnBtCriarLivro implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {//chama o metodo de criação dentro de DaoLivro, esse método faz acesso ao banco, por isso está em dao
-			DaoLivro.criaLivro(TelaCriaLivro.tfTitle, TelaCriaLivro.tfIsbn, TelaCriaLivro.tfPrice, TelaCriaLivro.cbEditora, TelaCriaLivro.tabelaAutoresSelecionados);
+			if(TelaCriaLivro.getTfIsbn().getText().isEmpty() || TelaCriaLivro.getTfPrice().getText().isEmpty() || TelaCriaLivro.getTfTitle().getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+			}
+			else {
+				if(JOptionPane.showConfirmDialog(null, "Deseja mesmo criar uma livro?", "Atenção", JOptionPane.CANCEL_OPTION) == 0) {
+					if(TelaCriaLivro.getTabelaAutoresSelecionados().getRowCount()>0) {
+							DaoLivro.criaLivro(TelaCriaLivro.getTfTitle(), TelaCriaLivro.getTfIsbn(), TelaCriaLivro.getTfPrice(), TelaCriaLivro.getCbEditora(), TelaCriaLivro.getTabelaAutoresSelecionados());	
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Nenhum autor selecionado!");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Operação cancelada!");
+				}
+			}
+			TelaCriaLivro.getTfIsbn().setText("");
+			TelaCriaLivro.getTfTitle().setText("");
+			TelaCriaLivro.getTfPrice().setText("");
+			TelaCriaLivro.getDtmAutoresSelecionados().setRowCount(0);
+			TelaCriaLivro.getDtmAutores().setRowCount(0);
+			TelaCriaLivroController.populaTabelaAutores(TelaCriaLivro.getDtmAutores());
 		}
-		
 	}
 	
 	//ação do mouse
-	public class selecionaAutor implements MouseListener{
+	public class SelecionaAutor implements MouseListener{
 		public int escolha;
-		public selecionaAutor(int aEscolha) {
+		public SelecionaAutor(int aEscolha) {
 			escolha = aEscolha;
 		}
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
+		
 		}
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if(escolha == 0) {// se a tabela selecionada for a geral ela manda sinal 0 e esse if acontece
-				populaTabelaAutoresSelecionados(TelaCriaLivro.dtmAutoresSelecionados, TelaCriaLivro.getAutorSelecionado());	
-				TelaCriaLivro.dtmAutores.removeRow(TelaCriaLivro.tabelaAutores.getSelectedRow());
-				System.out.println(TelaCriaLivro.tabelaAutores.getRowCount());
+				populaTabelaAutoresSelecionados(TelaCriaLivro.getDtmAutoresSelecionados(), TelaCriaLivro.getAutorSelecionado());	
+				TelaCriaLivro.getDtmAutores().removeRow(TelaCriaLivro.getTabelaAutores().getSelectedRow());
+				System.out.println(TelaCriaLivro.getTabelaAutores().getRowCount());
 				
 			}
 			else {//se não foi escolhido a outra tabela e esse else acontece
 				Object[] data = new Object[2];
 				data[1] = TelaCriaLivro.getAutorSelecionadoInverso().getNomeAutor();
 				data[0] = TelaCriaLivro.getAutorSelecionadoInverso().getIdAutor();
-				TelaCriaLivro.dtmAutores.addRow(data);	
-				TelaCriaLivro.dtmAutoresSelecionados.removeRow(TelaCriaLivro.tabelaAutoresSelecionados.getSelectedRow());
+				TelaCriaLivro.getDtmAutores().addRow(data);	
+				TelaCriaLivro.getDtmAutoresSelecionados().removeRow(TelaCriaLivro.getTabelaAutoresSelecionados().getSelectedRow());
 			}
 		}
 
@@ -70,7 +92,6 @@ public class TelaCriaLivroController{
 			// TODO Auto-generated method stub
 			
 		}
-		
 	}
 	
 	public static void populaTabelaAutores(DefaultTableModel dtmAutores) {
@@ -88,9 +109,4 @@ public class TelaCriaLivroController{
 			data[0] = autor.getIdAutor();
 			dtmAutoresSelecionados.addRow(data);
 	}
-	
-	public static void pegaAutoresTabelaSelecionados(DefaultTableModel dtmAutoresSelecionados) {
-		
-	}
-	
 }
