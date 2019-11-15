@@ -38,6 +38,7 @@ public class TelaExcluiAutor extends JFrame {
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Excluir Autor");
+		setLocationRelativeTo(null);
 
 		//TOP
 		JPanel panelTop = new JPanel();

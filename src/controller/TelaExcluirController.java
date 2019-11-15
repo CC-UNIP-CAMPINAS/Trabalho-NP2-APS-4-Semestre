@@ -17,7 +17,7 @@ public class TelaExcluirController{
 	public class OnBtExcluirAutor implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			TelaExcluiAutor.getInstance();
+			TelaExcluiAutor.getInstance().show();
 			TelaExcluir.getInstance().setVisible(false);
 		}
 	}
@@ -26,7 +26,7 @@ public class TelaExcluirController{
 	public class OnBtExcluirEditora implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			TelaExcluiEditora.getInstance();
+			TelaExcluiEditora.getInstance().show();
 			TelaExcluir.getInstance().setVisible(false);
 		}
 	}
@@ -35,7 +35,7 @@ public class TelaExcluirController{
 	public class OnBtExcluirLivro implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-				TelaExcluiLivro.getInstance();
+				TelaExcluiLivro.getInstance().show();
 				TelaExcluir.getInstance().setVisible(false);
 		}
 	}
