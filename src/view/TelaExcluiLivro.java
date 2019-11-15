@@ -40,7 +40,7 @@ public class TelaExcluiLivro extends JFrame {
 		setTitle("Excluir Livro");
 		setLocationRelativeTo(null);
 
-		// TOP
+		//TOP
 		JPanel panelTop = new JPanel();
 		panelTop.setPreferredSize(new Dimension(0, 60));
 		panelTop.setBackground(new Color(26, 83, 92));
@@ -50,7 +50,7 @@ public class TelaExcluiLivro extends JFrame {
 		labelTitulo.setText("<html><body><h1><span style='color: white;'>Excluir Livro</h1></body></html>");
 		panelTop.add(labelTitulo);
 
-		// CENTER
+		//CENTER
 		JPanel panelCentral = new JPanel();
 		panelCentral.setLayout(new GridLayout(1, 2, 5, 0));
 		add(BorderLayout.CENTER, panelCentral);
@@ -86,7 +86,7 @@ public class TelaExcluiLivro extends JFrame {
 		getTabelaLivrosSelecionados().addMouseListener(new TelaExcluiLivroController().new SelecionaLivro(1));
 		
 
-		// DIREITA
+		//DIREITA
 		JPanel panelDireita = new JPanel();
 		panelDireita.setPreferredSize(new Dimension(300, 0));
 		panelDireita.setBackground(new Color(78, 205, 196));
@@ -108,10 +108,9 @@ public class TelaExcluiLivro extends JFrame {
 		setVisible(true);
 	}
 
-	// GETS
+	//GETS
 	public static synchronized TelaExcluiLivro getInstance() {
-		if (instancia.isDisplayable() == false) {// pega unica instancia da classe se ela esta criada, se n�o o programa
-													// cria
+		if (instancia.isDisplayable() == false) {
 			instancia = new TelaExcluiLivro();
 		}
 		return instancia;	

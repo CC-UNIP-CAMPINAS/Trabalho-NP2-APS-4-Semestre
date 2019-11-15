@@ -32,8 +32,7 @@ public class TelaExcluiLivroController {
 	}
 
 	public class OnBtExcluiLivro implements ActionListener {
-		public void actionPerformed(ActionEvent e) {// chama o metodo de criação dentro de DaoAutor, esse método faz
-													// acesso ao banco, por isso está em dao
+		public void actionPerformed(ActionEvent e) {
 			if (JOptionPane.showConfirmDialog(null, "Deseja mesmo excluir um livro?", "Atenção", JOptionPane.CANCEL_OPTION) == 0) {
 				if (DaoLivro.excluiLivro(TelaExcluiLivro.getTabelaLivrosSelecionados()) > 0) {
 					TelaExcluiLivro.getDtmLivrosSelecionados().setNumRows(0);
@@ -52,8 +51,7 @@ public class TelaExcluiLivroController {
 	}
 
 	public static void populaTabelaLivros(DefaultTableModel dtmLivros) {
-		for (Livro livro : Colecao.getLivrosTemporario()) { // percorre a coleção e para cada autor cria um objeto e
-															// adiciona na tabela geral
+		for (Livro livro : Colecao.getLivrosTemporario()) { 
 			Object[] data = new Object[4];
 			data[0] = livro.getTitulo();
 			data[1] = livro.getIsbn();
@@ -63,20 +61,7 @@ public class TelaExcluiLivroController {
 		}
 	}
 
-	public static void populaTabelaLivrosSelecionados(DefaultTableModel dtmLivrosSelecionados, Livro livro) { // Cria um
-																												// objeto
-																												// que
-																												// ele
-																												// pega
-																												// no
-																												// parametro
-																												// e
-																												// adiciona
-																												// como
-																												// linha
-																												// na
-																												// segunda
-																												// tabela
+	public static void populaTabelaLivrosSelecionados(DefaultTableModel dtmLivrosSelecionados, Livro livro) {
 		Object[] data = new Object[4];
 		data[0] = livro.getTitulo();
 		data[1] = livro.getIsbn();
@@ -111,8 +96,7 @@ public class TelaExcluiLivroController {
 				data[2] = TelaExcluiLivro.getLivroSelecionadoInverso().getEditora();
 				data[3] = TelaExcluiLivro.getLivroSelecionadoInverso().getPreco();
 				TelaExcluiLivro.getDtmLivros().addRow(data);
-				TelaExcluiLivro.getDtmLivrosSelecionados()
-						.removeRow(TelaExcluiLivro.getTabelaLivrosSelecionados().getSelectedRow());
+				TelaExcluiLivro.getDtmLivrosSelecionados().removeRow(TelaExcluiLivro.getTabelaLivrosSelecionados().getSelectedRow());
 			}
 		}
 

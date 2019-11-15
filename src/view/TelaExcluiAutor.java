@@ -1,12 +1,16 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -15,95 +19,134 @@ import javax.swing.table.DefaultTableModel;
 import controller.TelaExcluiAutorController;
 import model.collection.entities.Autor;
 
-public class TelaExcluiAutor extends JFrame{
-	public JButton btBuscaAutor = new JButton("Buscar");
-	public JButton btExcluirAutor = new JButton("Excluir");
-	public static JTextField tfNome = new JTextField();
-	public static DefaultTableModel dtmAutores;
-	public static DefaultTableModel dtmAutoresSelecionados;
-	public static JTable tabelaAutores;
-	public static JTable tabelaAutoresSelecionados;
+public class TelaExcluiAutor extends JFrame {
+	private JButton btBuscaAutor = new JButton("Buscar");
+	private JButton btExcluirAutor = new JButton("Excluir");
+	private static JTextField tfNome = new JTextField();
+	private static DefaultTableModel dtmAutores;
+	private static DefaultTableModel dtmAutoresSelecionados;
+	private static JTable tabelaAutores;
+	private static JTable tabelaAutoresSelecionados;
 	private static TelaExcluiAutor instancia;
-	
+
 	static {
 		instancia = new TelaExcluiAutor();
 	}
-	
+
 	private TelaExcluiAutor() {
 		setSize(1250, 550);
-		setLayout(new FlowLayout());
+		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("Exclui Autor");
-		
-		tfNome.setPreferredSize(new Dimension(200,20));
-		add(tfNome);
-		
-		add(btBuscaAutor);
-		btBuscaAutor.addActionListener(new TelaExcluiAutorController().new onBtBuscarAutor());
-		
-		//tabela com todos os autores
-		String [] colunas = {"ID", "Autor"};
-		Object [][] dados = new Object[0][2];
-		dtmAutores = new DefaultTableModel(dados, colunas){
+		setTitle("Excluir Autor");
+
+		//TOP
+		JPanel panelTop = new JPanel();
+		panelTop.setPreferredSize(new Dimension(0, 60));
+		panelTop.setBackground(new Color(26, 83, 92));
+		add(BorderLayout.PAGE_START, panelTop);
+
+		JLabel labelTitulo = new JLabel();
+		labelTitulo.setText("<html><body><h1><span style='color: white;'>Excluir Autor</h1></body></html>");
+		panelTop.add(labelTitulo);
+
+		//CENTER
+		JPanel panelCentral = new JPanel();
+		panelCentral.setLayout(new GridLayout(1, 2, 5, 0));
+		add(BorderLayout.CENTER, panelCentral);
+
+		String[] colunas = { "ID", "Autor" };
+		Object[][] dados = new Object[0][2];
+		dtmAutores = new DefaultTableModel(dados, colunas) {
 			@Override
-			public boolean isCellEditable(int row, int column) { 
-				return false; //Isso faz a celula da tabela não ser editavel
-			}
-		};	    
-		tabelaAutores = new JTable(dtmAutores);
-		JScrollPane barraRolagem = new JScrollPane(tabelaAutores);
-		barraRolagem.getViewport().setBackground(Color.decode("#F7FFF7"));
-		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
-		add(barraRolagem);
-		tabelaAutores.addMouseListener(new TelaExcluiAutorController().new selecionaAutor(0));//coloca um evento de clique de mouse sempre que clicar em uma linha
-		
-		
-		//Tabela com os autores selecionados
-		String [] colunas2 = {"ID", "Autor"};
-		Object [][] dados2 = new Object[0][2];
-		dtmAutoresSelecionados = new DefaultTableModel(dados2, colunas2){
-			@Override
-			public boolean isCellEditable(int row, int column) { 
-				return false; //Isso faz a celula da tabela não ser editavel
+			public boolean isCellEditable(int row, int column) {
+				return false; // Isso faz a celula da tabela não ser editavel
 			}
 		};
-		tabelaAutoresSelecionados = new JTable(dtmAutoresSelecionados);		
-		JScrollPane barraRolagem2 = new JScrollPane(tabelaAutoresSelecionados);
+		tabelaAutores = new JTable(getDtmAutores());
+		JScrollPane barraRolagem = new JScrollPane(getTabelaAutores());
 		barraRolagem.getViewport().setBackground(Color.decode("#F7FFF7"));
 		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
-		add(barraRolagem2);
-		tabelaAutoresSelecionados.addMouseListener(new TelaExcluiAutorController().new selecionaAutor(1));//coloca um evento de clique de mouse sempre que clicar em uma linha	
+		panelCentral.add(barraRolagem);
+		getTabelaAutores().addMouseListener(new TelaExcluiAutorController().new selecionaAutor(0));
+
+		String[] colunas2 = { "ID", "Autor" };
+		Object[][] dados2 = new Object[0][2];
+		dtmAutoresSelecionados = new DefaultTableModel(dados2, colunas2) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false; // Isso faz a celula da tabela não ser editavel
+			}
+		};
+		tabelaAutoresSelecionados = new JTable(getDtmAutoresSelecionados());
+		JScrollPane barraRolagem2 = new JScrollPane(getTabelaAutoresSelecionados());
+		barraRolagem2.getViewport().setBackground(Color.decode("#F7FFF7"));
+		barraRolagem2.setBorder(BorderFactory.createEmptyBorder());
+		panelCentral.add(barraRolagem2);
+		getTabelaAutoresSelecionados().addMouseListener(new TelaExcluiAutorController().new selecionaAutor(1));
+
+		// DIREITA
+		JPanel panelDireita = new JPanel();
+		panelDireita.setPreferredSize(new Dimension(300, 0));
+		panelDireita.setBackground(new Color(78, 205, 196));
+		panelDireita.setLayout(new FlowLayout());
+		add(BorderLayout.LINE_END, panelDireita);
+
+		JLabel labelNomeAutor = new JLabel("Nome do autor:");
+		panelDireita.add(labelNomeAutor);	
+		getTfNome().setPreferredSize(new Dimension(250, 20));
+		panelDireita.add(getTfNome());
+
+		panelDireita.add(btBuscaAutor);
+		btBuscaAutor.addActionListener(new TelaExcluiAutorController().new onBtBuscarAutor());
 		
+		panelDireita.add(btExcluirAutor);
 		btExcluirAutor.addActionListener(new TelaExcluiAutorController().new onBtExcluiAutor());
-		add(btExcluirAutor);
 		
 		setVisible(true);
 	}
-	
-	
-	//GETS
-	
+
+	// GETS
+
 	public static synchronized TelaExcluiAutor getInstance() {
-		if(instancia.isDisplayable() == false){//pega unica instancia da classe se ela esta criada, se n�o o programa cria
+		if (instancia.isDisplayable() == false) {
 			instancia = new TelaExcluiAutor();
 		}
 		return instancia;
 	}
-	
-	
-	public static Autor getAutorSelecionado() {//seleciona a linha da tabela e pega os dados dessa linha
-		int linhaSelecionada = tabelaAutores.getSelectedRow();
-		int id   = Integer.parseInt(dtmAutores.getValueAt(linhaSelecionada, 0).toString());
-		String nome = dtmAutores.getValueAt(linhaSelecionada, 1).toString();
+
+	public static Autor getAutorSelecionado() {// seleciona a linha da tabela e pega os dados dessa linha
+		int linhaSelecionada = getTabelaAutores().getSelectedRow();
+		int id = Integer.parseInt(getDtmAutores().getValueAt(linhaSelecionada, 0).toString());
+		String nome = getDtmAutores().getValueAt(linhaSelecionada, 1).toString();
 		Autor autor = new Autor(nome, id);
 		return autor;
 	}
-	
-	public static Autor getAutorSelecionadoInverso() {//seleciona a linha da tabela e pega os dados dessa linha
-		int linhaSelecionada = tabelaAutoresSelecionados.getSelectedRow();
-		int id   = Integer.parseInt(dtmAutoresSelecionados.getValueAt(linhaSelecionada, 0).toString());
-		String nome = dtmAutoresSelecionados.getValueAt(linhaSelecionada, 1).toString();
+
+	public static Autor getAutorSelecionadoInverso() {// seleciona a linha da tabela e pega os dados dessa linha
+		int linhaSelecionada = getTabelaAutoresSelecionados().getSelectedRow();
+		int id = Integer.parseInt(getDtmAutoresSelecionados().getValueAt(linhaSelecionada, 0).toString());
+		String nome = getDtmAutoresSelecionados().getValueAt(linhaSelecionada, 1).toString();
 		Autor autor = new Autor(nome, id);
 		return autor;
-	}	
+	}
+
+	public static DefaultTableModel getDtmAutores() {
+		return dtmAutores;
+	}
+
+	public static JTextField getTfNome() {
+		return tfNome;
+	}
+
+	public static JTable getTabelaAutoresSelecionados() {
+		return tabelaAutoresSelecionados;
+	}
+
+	public static DefaultTableModel getDtmAutoresSelecionados() {
+		return dtmAutoresSelecionados;
+	}
+
+	public static JTable getTabelaAutores() {
+		return tabelaAutores;
+	}
 }
