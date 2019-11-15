@@ -12,10 +12,11 @@ import view.TelaLivraria;
 public class Main {
 
 	public static void main(String[] args) {
-		new TelaLivraria();
+		
 		DaoAutor.carregaAutor();
 		DaoEditora.carregaEditora();
 		DaoLivro.carregaLivro();
+		
 		
 		//to testando pra ver se os autores são adicionados na coleção
 		for(Autor a : Colecao.getAutores()) {
@@ -30,5 +31,6 @@ public class Main {
 		for (Livro liv : Colecao.getLivros()) {
 			System.out.println(liv);
 		}
+		new TelaLivraria();
 	}
 }

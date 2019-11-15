@@ -134,6 +134,79 @@ static ResultSet rs = null;
 			return status;
 		}
 
+		//Overload do metodo buscarLivro
+		public static boolean buscarLivro(JTextField tfLivro, String selectFrom, String orderBy) {
+			boolean status = false;
+			//Verifica e altera o valor de orderBy para ser implementado na Query
+			switch (orderBy) {
+				case "AZ":
+					orderBy ="b.title ASC";
+					break;
+				case "ZA":
+					orderBy ="b.title DESC";
+					break;
+				case "HPRICE":
+					orderBy ="b.price DESC";
+					break;
+				case "LPRICE":
+					orderBy ="b.price ASC";
+					break;
+				default:
+					orderBy ="b.title ASC";
+			};
+			//Verifica e altera o valor de selectFrom para ser implementado na Query
+			switch (selectFrom) {
+				case "BOOKS":
+					selectFrom ="b.title ilike '"+"%"+tfLivro.getText()+"%"+"'";
+					break;
+				case "AUTHOR":
+					selectFrom ="a.name ilike "+"'%"+tfLivro.getText()+"%'" + " or a.fname ilike "+"'%"+tfLivro.getText()+"%'";
+					break;
+				case "PUBLISHER":
+					selectFrom ="p.name ilike "+"'%"+tfLivro.getText()+"%'" + " or p.url ilike "+"'%"+tfLivro.getText()+"%'";
+					break;
+				case "ALL":
+					selectFrom ="b.title ilike '"+"%"+tfLivro.getText()+"%"+"' or "+
+					"a.name ilike "+"'%"+tfLivro.getText()+"%'" + " or a.fname ilike "+"'%"+tfLivro.getText()+"%' or "+
+					"p.name ilike "+"'%"+tfLivro.getText()+"%'" + " or p.url ilike "+"'%"+tfLivro.getText()+"%'";
+					break;
+				default:
+					selectFrom ="b.title ilike '"+"%"+tfLivro.getText()+"%"+"'";
+			};
+			try {
+				Colecao.getLivrosTemporario().clear();
+				st = Banco.getConnection().prepareStatement("select * from books b inner join booksauthors ba on(b.isbn = ba.isbn) "+ 
+						"inner join publishers p on(p.publisher_id = b.publisher_id) "+ 
+						"inner join authors a on(a.author_id = ba.author_id) "+
+						"where "+selectFrom+" order by "+orderBy+";");
+				rs = st.executeQuery();
+				while(rs.next()) {
+					Livro livro = new Livro(rs.getString(1), rs.getString(2), rs.getString(9), rs.getDouble(4));
+					String nomeAutor= Autor.juntaNomeAutor(rs.getString(12), rs.getString(13));
+					if(Colecao.getLivrosTemporario().contains(livro)){
+						for(Livro liv : Colecao.getLivrosTemporario()){
+							if(liv.equals(livro)){
+								liv.getAutores().add(nomeAutor);
+							}
+						}
+					}	
+					else{
+						livro.getAutores().add(nomeAutor);
+						Colecao.getLivrosTemporario().add(livro);
+					}
+				}
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			finally{//Fecha o st, rs e o connection
+				Banco.closeConnection();
+				Banco.closeStatement(st);
+				Banco.closeResultSet(rs);
+			}
+			return status;
+		}
+		
 		public static int excluiLivro(JTable tabelaLivros) {
 			int count = (tabelaLivros.getRowCount());
 			try {

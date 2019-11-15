@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -25,7 +26,18 @@ import controller.TelaLivrariaController;
 
 public class TelaLivraria extends JFrame{
 	public static JButton btnAddBook;
-	TableContent tabela = new TableContent();
+	public static TableContent tabela = new TableContent();
+	public static JTextField SearchTextField;
+	//Select From
+	public static JCheckBox isBook;
+	public static JCheckBox isAuthor;
+	public static JCheckBox isPublisher;
+	public static JCheckBox isAll;
+	//Order By
+	public static JCheckBox byAz;
+	public static JCheckBox byZa;
+	public static JCheckBox byHprice; 
+	public static JCheckBox byLprice;
 	
 	public TelaLivraria() {
 		setSize(1024, 600);
@@ -53,52 +65,59 @@ public class TelaLivraria extends JFrame{
 		sidebar.setLayout(new GridBagLayout());
 		
 		gbc.insets = new Insets(2,10,2,5);
-		JTextField textField= new JTextField(20);
+		SearchTextField = new JTextField(20);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 2;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
-		sidebar.add(textField, gbc);
+		sidebar.add(SearchTextField, gbc);
 	
 		gbc.insets = new Insets(2,5,2,10);
 		JButton btnSearch = new JButton("Buscar");
 		btnSearch.setBackground(Color.decode("#1A535C"));
 		btnSearch.setForeground(Color.decode("#F7FFF7"));
-		btnSearch.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				TableContent.pesquisar(tabela.getModelo());
-			}
-			
-		});
+		btnSearch.addActionListener(new TelaLivrariaController().new onBtBuscar());
 		gbc.gridx = 2;
 		gbc.gridy = 0;
 		sidebar.add(btnSearch, gbc);
-		
-		//Criando os JCheckBox para filtar a busca
-		JCheckBox isBook = new JCheckBox("Livros");
-		JCheckBox isAuthor = new JCheckBox("Autores");
-		JCheckBox isPublisher = new JCheckBox("Editoras");
-		JCheckBox byAz = new JCheckBox("Z-A");
-		JCheckBox byZa = new JCheckBox("A-Z");
-		JCheckBox byHprice = new JCheckBox("Maior Preï¿½o");
-		JCheckBox byLprice = new JCheckBox("Menor Preï¿½o");
+		//Inicializando os CheckBox Select From
+		isBook = new JCheckBox("Livros");
+		isAuthor = new JCheckBox("Autores");
+		isPublisher = new JCheckBox("Editoras");
+		isAll = new JCheckBox("Todos", true);
+		//Inicializando os CheckBox Order By
+		byZa = new JCheckBox("Titulo Z-A");
+		byAz = new JCheckBox("Titulo A-Z", true);
+		byHprice = new JCheckBox("Maior Preço");
+		byLprice = new JCheckBox("Menor Preço");
+		//Definindo a cor de fundo dos checkbox
 		isBook.setBackground(Color.decode("#4ECDC4"));
 		isAuthor.setBackground(Color.decode("#4ECDC4"));
 		isPublisher.setBackground(Color.decode("#4ECDC4"));
+		isAll.setBackground(Color.decode("#4ECDC4"));
 		byAz.setBackground(Color.decode("#4ECDC4"));
 		byZa.setBackground(Color.decode("#4ECDC4"));
 		byHprice.setBackground(Color.decode("#4ECDC4"));
 		byLprice.setBackground(Color.decode("#4ECDC4"));
-		
+		//Criando os textos para indicar as funcionalidades dos Checkbox
 		JLabel selType = new JLabel(); 		
 		selType.setText("Filtrar Por:");
 		JLabel orderBy = new JLabel(); 		
 		orderBy.setText("Ordenar Por:");
 		JLabel filler = new JLabel(); 		
 		filler.setText(" ");
+		//Criando ButtonGroup para agrupar os JcheckBox
+		ButtonGroup GroupSelectFrom= new ButtonGroup();
+		ButtonGroup GroupOrderBY = new ButtonGroup();
+		GroupSelectFrom.add(isBook);
+		GroupSelectFrom.add(isAuthor);
+		GroupSelectFrom.add(isPublisher);
+		GroupSelectFrom.add(isAll);
+		GroupOrderBY.add(byAz);
+		GroupOrderBY.add(byZa);
+		GroupOrderBY.add(byHprice);
+		GroupOrderBY.add(byLprice);
+		
 		
 		//Criando paineis para fixar os JCheckBox
 		JPanel panelIs = new JPanel();
@@ -113,6 +132,7 @@ public class TelaLivraria extends JFrame{
 		panelIs.add(isBook);
 		panelIs.add(isAuthor);
 		panelIs.add(isPublisher);
+		panelIs.add(isAll);
 		panelBy.add(filler);
 		panelBy.add(orderBy);
 		panelBy.add(byAz);
@@ -193,7 +213,6 @@ public class TelaLivraria extends JFrame{
 		this.add(sidebar, BorderLayout.EAST);
 		this.add(content, FlowLayout.RIGHT);
 		setVisible(true);
-		
-		
+
 	}
 }

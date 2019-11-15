@@ -18,7 +18,6 @@ public class Banco {
         if(conn == null){
             try{
                 conn = DriverManager.getConnection(url, usuario, senha);
-                System.out.println("Ta Mec");
             }
             catch(SQLException e){
             	e.printStackTrace();
