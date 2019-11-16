@@ -1,6 +1,7 @@
 package model.collection.entities;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Livro implements Comparable<Livro>{
@@ -84,4 +85,12 @@ public class Livro implements Comparable<Livro>{
 		}
 		return "Nome: "+titulo+"\nIsbn: "+isbn+"\nEditora: "+editora+"\nPre�o: "+preco+"\nAutores: "+listaAutores+"\n";
 	}
+	
+	public static Comparator<String> sortBySequ_no = new Comparator<String>() {
+		@Override
+		public int compare(String obj1, String obj2) {
+			//sort in ascending order
+			return obj1.compareTo(obj2);
+		}
+	}; 
 }

@@ -30,11 +30,11 @@ public class TableContent extends DefaultTableModel{
 	
     public TableContent() {
         tabela = new JTable(getModelo());
-        String[] colunas = {"ISDB","Titulo","Autores","Editora","Preço"};
+        String[] colunas = {"ISDB","Titulo","Autores","Editora","Preï¿½o"};
         this.setColumnIdentifiers(colunas);
         pesquisar(getModelo());
         
-        for (Livro l : Colecao.getLivros()) {
+        for (Livro l : Colecao.getLivrosTemporario()) {
             modelo.addRow(new Object[]{
             		l.getIsbn(),
             		l.getTitulo(),
@@ -47,9 +47,10 @@ public class TableContent extends DefaultTableModel{
     
     public static void pesquisar(DefaultTableModel modelo) {
         modelo.setNumRows(0);
-        modelo.addRow(new String[] {"<html><b>ISDB</b></html>","<html><b>Titulo</b></html>","<html><b>Autores</b></html>","<html><b>Editora</b></html>","<html><b>Preço</b></html>"});
+        modelo.addRow(new String[] {"<html><b>ISDB</b></html>","<html><b>Titulo</b></html>","<html><b>Autores</b></html>","<html><b>Editora</b></html>","<html><b>Preï¿½o</b></html>"});
         
         for (Livro l : Colecao.getLivrosTemporario()) {
+        	l.getAutores().sort(Livro.sortBySequ_no);
             modelo.addRow(new Object[]{
             		l.getIsbn(),
             		l.getTitulo(),

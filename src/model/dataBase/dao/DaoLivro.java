@@ -58,7 +58,7 @@ static ResultSet rs = null;
 			e.printStackTrace();
 		}
 		catch(NumberFormatException a) {
-			JOptionPane.showMessageDialog(null, "Valor incorreto para preço!\n''"+TelaCriaLivro.getTfPrice().getText()+"'' não é um número!");
+			JOptionPane.showMessageDialog(null, "Valor incorreto para preï¿½o!\n''"+TelaCriaLivro.getTfPrice().getText()+"'' nï¿½o ï¿½ um nï¿½mero!");
 		}
 		finally{//Fecha o st e o connection
 			Banco.closeConnection();
@@ -160,15 +160,19 @@ static ResultSet rs = null;
 					selectFrom ="b.title ilike '"+"%"+tfLivro.getText()+"%"+"'";
 					break;
 				case "AUTHOR":
-					selectFrom ="a.name ilike "+"'%"+tfLivro.getText()+"%'" + " or a.fname ilike "+"'%"+tfLivro.getText()+"%'";
+					selectFrom ="(b.title in (select b.title from books b inner join booksauthors ba on(b.isbn = ba.isbn) " + 
+							"inner join authors a on(a.author_id = ba.author_id) " + 
+							"where a.name ilike " + "'%"+tfLivro.getText()+"%'"+" or a.fname ilike "+"'%"+tfLivro.getText()+"%'))";
 					break;
 				case "PUBLISHER":
 					selectFrom ="p.name ilike "+"'%"+tfLivro.getText()+"%'" + " or p.url ilike "+"'%"+tfLivro.getText()+"%'";
 					break;
 				case "ALL":
 					selectFrom ="b.title ilike '"+"%"+tfLivro.getText()+"%"+"' or "+
-					"a.name ilike "+"'%"+tfLivro.getText()+"%'" + " or a.fname ilike "+"'%"+tfLivro.getText()+"%' or "+
-					"p.name ilike "+"'%"+tfLivro.getText()+"%'" + " or p.url ilike "+"'%"+tfLivro.getText()+"%'";
+							"(b.title in (select b.title from books b inner join booksauthors ba on(b.isbn = ba.isbn) " + 
+							"inner join authors a on(a.author_id = ba.author_id) " + 
+							"where a.name ilike " + "'%"+tfLivro.getText()+"%'"+" or a.fname ilike "+"'%"+tfLivro.getText()+"%'))"+" or "+
+							"p.name ilike "+"'%"+tfLivro.getText()+"%'" + " or p.url ilike "+"'%"+tfLivro.getText()+"%'";
 					break;
 				default:
 					selectFrom ="b.title ilike '"+"%"+tfLivro.getText()+"%"+"'";
@@ -180,20 +184,27 @@ static ResultSet rs = null;
 						"inner join authors a on(a.author_id = ba.author_id) "+
 						"where "+selectFrom+" order by "+orderBy+";");
 				rs = st.executeQuery();
-				while(rs.next()) {
-					Livro livro = new Livro(rs.getString(1), rs.getString(2), rs.getString(9), rs.getDouble(4));
-					String nomeAutor= Autor.juntaNomeAutor(rs.getString(12), rs.getString(13));
-					if(Colecao.getLivrosTemporario().contains(livro)){
-						for(Livro liv : Colecao.getLivrosTemporario()){
-							if(liv.equals(livro)){
-								liv.getAutores().add(nomeAutor);
+				if(rs.next()) {
+					do {
+						Livro livro = new Livro(rs.getString(1), rs.getString(2), rs.getString(9), rs.getDouble(4));
+						String nomeAutor= rs.getString(7)+": "+Autor.juntaNomeAutor(rs.getString(12), rs.getString(13));
+						if(Colecao.getLivrosTemporario().contains(livro)){
+							for(Livro liv : Colecao.getLivrosTemporario()){
+								if(liv.getIsbn().equals(livro.getIsbn())){
+									liv.getAutores().add(nomeAutor);
+								}
 							}
+						}	
+						else{
+							livro.getAutores().add(nomeAutor);
+							Colecao.getLivrosTemporario().add(livro);
 						}
-					}	
-					else{
-						livro.getAutores().add(nomeAutor);
-						Colecao.getLivrosTemporario().add(livro);
 					}
+					while(rs.next());
+					status = true;
+				}
+				else {
+					status = false;
 				}
 			}
 			catch(SQLException e) {

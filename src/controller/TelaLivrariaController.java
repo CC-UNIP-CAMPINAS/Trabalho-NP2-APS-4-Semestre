@@ -3,6 +3,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import model.collection.Colecao;
 import model.dataBase.dao.DaoLivro;
 import view.TableContent;
@@ -20,20 +22,37 @@ public class TelaLivrariaController{
 		@Override
 		public void actionPerformed(ActionEvent e) {		
 			if(TelaLivraria.isBook.isSelected()) {
-				DaoLivro.buscarLivro(TelaLivraria.SearchTextField,"BOOKS", orderByType());
-				TableContent.pesquisar(TelaLivraria.tabela.getModelo());
+				if(DaoLivro.buscarLivro(TelaLivraria.SearchTextField,"BOOKS", orderByType())) {
+					TableContent.pesquisar(TelaLivraria.tabela.getModelo());
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Nenhum dado encontrado!");
+				}
+				
 			}
 			if(TelaLivraria.isAuthor.isSelected()) {
-				DaoLivro.buscarLivro(TelaLivraria.SearchTextField,"AUTHOR",orderByType());
-				TableContent.pesquisar(TelaLivraria.tabela.getModelo());
+				if(DaoLivro.buscarLivro(TelaLivraria.SearchTextField,"AUTHOR",orderByType())) {
+					TableContent.pesquisar(TelaLivraria.tabela.getModelo());
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Nenhum dado encontrado!");
+				}
 			}
 			if(TelaLivraria.isPublisher.isSelected()) {
-				DaoLivro.buscarLivro(TelaLivraria.SearchTextField,"PUBLISHER", orderByType());
-				TableContent.pesquisar(TelaLivraria.tabela.getModelo());
+				if(DaoLivro.buscarLivro(TelaLivraria.SearchTextField,"PUBLISHER", orderByType())) {
+					TableContent.pesquisar(TelaLivraria.tabela.getModelo());
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Nenhum dado encontrado!");
+				}	
 			}
 			if(TelaLivraria.isAll.isSelected()) {
-				DaoLivro.buscarLivro(TelaLivraria.SearchTextField,"ALL", orderByType());
-				TableContent.pesquisar(TelaLivraria.tabela.getModelo());
+				if(DaoLivro.buscarLivro(TelaLivraria.SearchTextField,"ALL", orderByType())) {
+					TableContent.pesquisar(TelaLivraria.tabela.getModelo());
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Nenhum dado encontrado!");
+				}
 			}
 		}
 	}
