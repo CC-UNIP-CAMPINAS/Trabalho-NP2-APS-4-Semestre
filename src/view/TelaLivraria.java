@@ -6,10 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -88,8 +85,8 @@ public class TelaLivraria extends JFrame{
 		//Inicializando os CheckBox Order By
 		byZa = new JCheckBox("Titulo Z-A");
 		byAz = new JCheckBox("Titulo A-Z", true);
-		byHprice = new JCheckBox("Maior Preço");
-		byLprice = new JCheckBox("Menor Preço");
+		byHprice = new JCheckBox("Maior Preï¿½o");
+		byLprice = new JCheckBox("Menor Preï¿½o");
 		//Definindo a cor de fundo dos checkbox
 		isBook.setBackground(Color.decode("#4ECDC4"));
 		isAuthor.setBackground(Color.decode("#4ECDC4"));
@@ -193,6 +190,7 @@ public class TelaLivraria extends JFrame{
 	    JButton btnModificar = new JButton("Modificar");
 	    btnModificar.setBackground(Color.decode("#1A535C"));
 	    btnModificar.setForeground(Color.decode("#F7FFF7"));
+	    btnModificar.addActionListener(new TelaLivrariaController().new onBtModificar());
 	    gbc.gridx = 2;
 		gbc.gridy = 4;
 	    sidebar.add(btnModificar, gbc);

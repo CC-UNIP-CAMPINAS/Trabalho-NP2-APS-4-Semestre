@@ -52,8 +52,9 @@ public class TelaExcluiAutorController {
 
 	public static void populaTabelaAutores(DefaultTableModel dtmAutores) {
 		for (Autor autor : Colecao.getAutoresTemporario()) {
-			Object[] data = new Object[2];
+			Object[] data = new Object[3];
 			data[1] = autor.getNomeAutor();
+			data[2] = autor.getSobreNome();
 			data[0] = autor.getIdAutor();
 			dtmAutores.addRow(data);
 			System.out.println(autor);
@@ -61,8 +62,9 @@ public class TelaExcluiAutorController {
 	}
 
 	public static void populaTabelaAutoresSelecionados(DefaultTableModel dtmAutoresSelecionados, Autor autor) { 																								// tabela
-		Object[] data = new Object[2];
+		Object[] data = new Object[3];
 		data[1] = autor.getNomeAutor();
+		data[2] = autor.getSobreNome();
 		data[0] = autor.getIdAutor();
 		dtmAutoresSelecionados.addRow(data);
 	}
@@ -87,8 +89,9 @@ public class TelaExcluiAutorController {
 				System.out.println(TelaExcluiAutor.getTabelaAutores().getRowCount());
 
 			} else {// se não foi escolhido a outra tabela e esse else acontece
-				Object[] data = new Object[2];
+				Object[] data = new Object[3];
 				data[1] = TelaExcluiAutor.getAutorSelecionadoInverso().getNomeAutor();
+				data[2] = TelaExcluiAutor.getAutorSelecionadoInverso().getSobreNome();
 				data[0] = TelaExcluiAutor.getAutorSelecionadoInverso().getIdAutor();
 				TelaExcluiAutor.getDtmAutores().addRow(data);
 				TelaExcluiAutor.getDtmAutoresSelecionados().removeRow(TelaExcluiAutor.getTabelaAutoresSelecionados().getSelectedRow());

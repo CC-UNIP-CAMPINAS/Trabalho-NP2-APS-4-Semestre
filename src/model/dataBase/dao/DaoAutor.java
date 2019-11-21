@@ -29,7 +29,7 @@ public abstract class DaoAutor {
 			st.setString(3, tfSobreNome.getText());
 			st.execute();
 			
-			Autor autor = new Autor(tfNome.getText()+" "+tfSobreNome.getText(), (rs.getInt(1)+1));
+			Autor autor = new Autor(tfNome.getText(), tfSobreNome.getText(), (rs.getInt(1)+1));
 			Colecao.getAutores().add(autor);
 		}
 		catch(SQLException e) {
@@ -49,7 +49,7 @@ public abstract class DaoAutor {
 			rs = st.executeQuery();
 			
 			while(rs.next()) {
-				Autor autor = new Autor(Autor.juntaNomeAutor(rs.getString(2), rs.getString(3)), rs.getInt(1));
+				Autor autor = new Autor(rs.getString(2), rs.getString(3), rs.getInt(1));
 				System.out.println(rs.getString(3));
 				Colecao.getAutores().add(autor);
 			}
@@ -75,7 +75,7 @@ public abstract class DaoAutor {
 			rs = st.executeQuery();
 			if(rs.next()) {
 				do {
-					Autor autor = new Autor(Autor.juntaNomeAutor(rs.getString(2), rs.getString(3)), rs.getInt(1));
+					Autor autor = new Autor(rs.getString(2), rs.getString(3), rs.getInt(1));
 					Colecao.getAutoresTemporario().add(autor);	
 				}
 				while(rs.next());
@@ -117,5 +117,29 @@ public abstract class DaoAutor {
 			Banco.closeStatement(st);
 		}
 		return count;
+	}
+	
+	public static void atualizaAutor(JTextField tfNome, JTextField tfId, JTextField tfSobreNome) {
+		try {
+			st = Banco.getConnection().prepareStatement("update authors set fname = ?, name = ? where author_id = ?");
+			st.setInt(3, Integer.parseInt(tfId.getText()));
+			st.setString(2, tfNome.getText());
+			st.setString(1, tfSobreNome.getText());
+			st.execute();
+			for (Autor autor : Colecao.getAutores()) {
+				if(autor.getIdAutor() == Integer.parseInt(tfId.getText())) {
+					autor.setNome(tfNome.getText());
+					autor.setSobreNome(tfSobreNome.getText());
+					autor.setNomeCompleto(Autor.juntaNomeAutor(tfNome.getText(), tfSobreNome.getText()));
+				}
+			}		
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally{//Fecha o st, rs e o connection
+			Banco.closeConnection();
+			Banco.closeStatement(st);
+		}
 	}
 }

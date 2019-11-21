@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import model.collection.Colecao;
 import model.dataBase.dao.DaoLivro;
 import view.TableContent;
+import view.TelaAtualizar;
 import view.TelaCriaAutor;
 import view.TelaCriaEditora;
 import view.TelaCriaLivro;
@@ -86,7 +87,14 @@ public class TelaLivrariaController{
 	public class onBtExcluir implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			TelaExcluir.getInstance();//chama outra tela
+			TelaExcluir.getInstance().show();;//chama outra tela
+		}
+	}
+	
+	public class onBtModificar implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			TelaAtualizar.getInstance().show();//chama outra tela
 		}
 	}
 	

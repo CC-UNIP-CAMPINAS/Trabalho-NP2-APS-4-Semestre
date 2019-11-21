@@ -60,8 +60,8 @@ public class TelaCriaLivro extends JFrame {
 		panelCentral.setLayout(new GridLayout(1, 2, 5, 0));
 		add(BorderLayout.CENTER, panelCentral);
 
-		String[] colunas = { "ID", "Autor" };
-		Object[][] dados = new Object[0][2];
+		String[] colunas = { "ID", "Autor", "Sobre Nome"};
+		Object[][] dados = new Object[0][3];
 		dtmAutores = new DefaultTableModel(dados, colunas) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -77,8 +77,8 @@ public class TelaCriaLivro extends JFrame {
 		TelaCriaLivroController.populaTabelaAutores(getDtmAutores());// popula a tabela de autores
 		getTabelaAutores().addMouseListener(new TelaCriaLivroController().new SelecionaAutor(0));
 
-		String[] colunas2 = { "ID", "Autor" };
-		Object[][] dados2 = new Object[0][2];
+		String[] colunas2 = { "ID", "Nome", "Sobre Nome" };
+		Object[][] dados2 = new Object[0][3];
 		dtmAutoresSelecionados = new DefaultTableModel(dados2, colunas2) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -106,7 +106,7 @@ public class TelaCriaLivro extends JFrame {
 		panelDireitaInterno.setLayout(new GridLayout(5, 2, 5, 5));
 		panelDireita.add(panelDireitaInterno);
 
-		JLabel labelTituloDoLivro = new JLabel("Título:");
+		JLabel labelTituloDoLivro = new JLabel("Tï¿½tulo:");
 		panelDireitaInterno.add(labelTituloDoLivro);
 		panelDireitaInterno.add(tfTitle);
 
@@ -114,7 +114,7 @@ public class TelaCriaLivro extends JFrame {
 		panelDireitaInterno.add(labelIsbn);
 		panelDireitaInterno.add(tfIsbn);
 
-		JLabel labelPreco = new JLabel("Preço:");
+		JLabel labelPreco = new JLabel("Preï¿½o:");
 		panelDireitaInterno.add(labelPreco);
 		panelDireitaInterno.add(tfPrice);
 
@@ -140,7 +140,8 @@ public class TelaCriaLivro extends JFrame {
 		int linhaSelecionada = getTabelaAutores().getSelectedRow();
 		int id = Integer.parseInt(getDtmAutores().getValueAt(linhaSelecionada, 0).toString());
 		String nome = getDtmAutores().getValueAt(linhaSelecionada, 1).toString();
-		Autor autor = new Autor(nome, id);
+		String sobreNome = getDtmAutores().getValueAt(linhaSelecionada, 2).toString();
+		Autor autor = new Autor(nome, sobreNome, id);
 		return autor;
 	}
 
@@ -148,7 +149,8 @@ public class TelaCriaLivro extends JFrame {
 		int linhaSelecionada = getTabelaAutoresSelecionados().getSelectedRow();
 		int id = Integer.parseInt(getDtmAutoresSelecionados().getValueAt(linhaSelecionada, 0).toString());
 		String nome = getDtmAutoresSelecionados().getValueAt(linhaSelecionada, 1).toString();
-		Autor autor = new Autor(nome, id);
+		String sobreNome = getDtmAutoresSelecionados().getValueAt(linhaSelecionada, 2).toString();
+		Autor autor = new Autor(nome, sobreNome, id);
 		return autor;
 	}
 

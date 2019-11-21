@@ -23,6 +23,7 @@ public class TelaExcluiAutor extends JFrame {
 	private JButton btBuscaAutor = new JButton("Buscar");
 	private JButton btExcluirAutor = new JButton("Excluir");
 	private static JTextField tfNome = new JTextField();
+	private static JTextField tfsobreNome = new JTextField();
 	private static DefaultTableModel dtmAutores;
 	private static DefaultTableModel dtmAutoresSelecionados;
 	private static JTable tabelaAutores;
@@ -55,8 +56,8 @@ public class TelaExcluiAutor extends JFrame {
 		panelCentral.setLayout(new GridLayout(1, 2, 5, 0));
 		add(BorderLayout.CENTER, panelCentral);
 
-		String[] colunas = { "ID", "Autor" };
-		Object[][] dados = new Object[0][2];
+		String[] colunas = { "ID", "Nome", "Sobre Nome" };
+		Object[][] dados = new Object[0][3];
 		dtmAutores = new DefaultTableModel(dados, colunas) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -70,8 +71,8 @@ public class TelaExcluiAutor extends JFrame {
 		panelCentral.add(barraRolagem);
 		getTabelaAutores().addMouseListener(new TelaExcluiAutorController().new selecionaAutor(0));
 
-		String[] colunas2 = { "ID", "Autor" };
-		Object[][] dados2 = new Object[0][2];
+		String[] colunas2 = { "ID", "Nome", "Sobre Nome" };
+		Object[][] dados2 = new Object[0][3];
 		dtmAutoresSelecionados = new DefaultTableModel(dados2, colunas2) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -96,6 +97,10 @@ public class TelaExcluiAutor extends JFrame {
 		panelDireita.add(labelNomeAutor);	
 		getTfNome().setPreferredSize(new Dimension(250, 20));
 		panelDireita.add(getTfNome());
+		JLabel labelSobreNomeAutor = new JLabel("Nome do autor:");
+		panelDireita.add(labelSobreNomeAutor);	
+		getTfsobreNome().setPreferredSize(new Dimension(250, 20));
+		panelDireita.add(getTfNome());
 
 		panelDireita.add(btBuscaAutor);
 		btBuscaAutor.addActionListener(new TelaExcluiAutorController().new onBtBuscarAutor());
@@ -119,7 +124,8 @@ public class TelaExcluiAutor extends JFrame {
 		int linhaSelecionada = getTabelaAutores().getSelectedRow();
 		int id = Integer.parseInt(getDtmAutores().getValueAt(linhaSelecionada, 0).toString());
 		String nome = getDtmAutores().getValueAt(linhaSelecionada, 1).toString();
-		Autor autor = new Autor(nome, id);
+		String sobreNome = getDtmAutores().getValueAt(linhaSelecionada, 2).toString();
+		Autor autor = new Autor(nome, sobreNome, id);
 		return autor;
 	}
 
@@ -127,7 +133,8 @@ public class TelaExcluiAutor extends JFrame {
 		int linhaSelecionada = getTabelaAutoresSelecionados().getSelectedRow();
 		int id = Integer.parseInt(getDtmAutoresSelecionados().getValueAt(linhaSelecionada, 0).toString());
 		String nome = getDtmAutoresSelecionados().getValueAt(linhaSelecionada, 1).toString();
-		Autor autor = new Autor(nome, id);
+		String sobreNome = getDtmAutoresSelecionados().getValueAt(linhaSelecionada, 2).toString();
+		Autor autor = new Autor(nome, sobreNome, id);
 		return autor;
 	}
 
@@ -149,5 +156,9 @@ public class TelaExcluiAutor extends JFrame {
 
 	public static JTable getTabelaAutores() {
 		return tabelaAutores;
+	}
+
+	public static JTextField getTfsobreNome() {
+		return tfsobreNome;
 	}
 }

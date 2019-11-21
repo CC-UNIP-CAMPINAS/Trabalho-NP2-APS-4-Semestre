@@ -67,8 +67,9 @@ public class TelaCriaLivroController{
 				
 			}
 			else {//se não foi escolhido a outra tabela e esse else acontece
-				Object[] data = new Object[2];
+				Object[] data = new Object[3];
 				data[1] = TelaCriaLivro.getAutorSelecionadoInverso().getNomeAutor();
+				data[2] = TelaCriaLivro.getAutorSelecionadoInverso().getSobreNome();
 				data[0] = TelaCriaLivro.getAutorSelecionadoInverso().getIdAutor();
 				TelaCriaLivro.getDtmAutores().addRow(data);	
 				TelaCriaLivro.getDtmAutoresSelecionados().removeRow(TelaCriaLivro.getTabelaAutoresSelecionados().getSelectedRow());
@@ -96,16 +97,18 @@ public class TelaCriaLivroController{
 	
 	public static void populaTabelaAutores(DefaultTableModel dtmAutores) {
 		for(Autor autor : Colecao.getAutores()) { //percorre a coleção e para cada autor cria um objeto e adiciona na tabela geral
-			Object[] data = new Object[2];
+			Object[] data = new Object[3];
 			data[1] = autor.getNomeAutor();
+			data[2] = autor.getSobreNome();
 			data[0] = autor.getIdAutor();
 			dtmAutores.addRow(data);
 		}
 	}
 	
 	public static void populaTabelaAutoresSelecionados(DefaultTableModel dtmAutoresSelecionados, Autor autor) {	//Cria um objeto que ele pega no parametro e adiciona como linha na segunda tabela
-			Object[] data = new Object[2];
+			Object[] data = new Object[3];
 			data[1] = autor.getNomeAutor();
+			data[2] = autor.getSobreNome();
 			data[0] = autor.getIdAutor();
 			dtmAutoresSelecionados.addRow(data);
 	}

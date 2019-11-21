@@ -4,11 +4,15 @@ import java.util.Objects;
 
 public class Autor implements Comparable<Autor>{//agora implementa comparable para usar o método compareTo
 	private String nome;
+	private String sobreNome;
+	private String nomeCompleto;
 	private int idAutor;
 	
-	public Autor(String nome, int idAutor) {
+	public Autor(String nome, String sobreNome, int idAutor) {
 		this.nome = nome;
+		this.sobreNome = sobreNome;
 		this.idAutor = idAutor;
+		nomeCompleto = juntaNomeAutor(nome, sobreNome);
 	}
 	
 	public int getIdAutor() {
@@ -19,13 +23,32 @@ public class Autor implements Comparable<Autor>{//agora implementa comparable pa
 		return nome;
 	}
 
+	public String getNomeCompleto() {
+		return nomeCompleto;
+	}
+	
+	public String getSobreNome() {
+		return sobreNome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setSobreNome(String sobreNome) {
+		this.sobreNome = sobreNome;
+	}
+
+	public void setNomeCompleto(String nomeCompleto) {
+		this.nomeCompleto = nomeCompleto;
+	}
+
 	public static String juntaNomeAutor(String aNome, String aSobreNome){
          String nome = aNome;
          String sobreNome = aSobreNome;
          nome = nome.replaceAll(" ","");
          sobreNome = sobreNome.replaceAll("  ","");
-         nome = nome+" "+sobreNome;
-         return nome;
+         return nome+" "+sobreNome;
 }
 
 	@Override//TreeSet pede esse método, ele que vai identificar oq são Autores iguais

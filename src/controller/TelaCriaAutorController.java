@@ -39,7 +39,7 @@ public class TelaCriaAutorController {
 		dtmAutores.setNumRows(0);
 		for(Autor autor : Colecao.getAutores()) { //percorre a coleção e para cada autor cria um objeto e adiciona na tabela geral
 			Object[] data = new Object[2];
-			data[1] = autor.getNomeAutor();
+			data[1] = autor.getNomeCompleto();
 			data[0] = autor.getIdAutor();
 			dtmAutores.addRow(data);
 		}
