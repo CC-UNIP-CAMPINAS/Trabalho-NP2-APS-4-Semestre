@@ -107,4 +107,27 @@ public abstract class DaoEditora {
 		}
 		return count;
 	}
+
+	public static void atualizaEditora(JTextField tfNome, JTextField tfId, JTextField tfUrl) {
+		try {
+			st = Banco.getConnection().prepareStatement("update publishers set name = ?, url = ? where publisher_id = ?");
+			st.setInt(3, Integer.parseInt(tfId.getText()));
+			st.setString(1, tfNome.getText());
+			st.setString(2, tfUrl.getText());
+			st.execute();
+			for (Editora editora : Colecao.getEditoras()) {
+				if(editora.getIdEditora() == Integer.parseInt(tfId.getText())) {
+					editora.setNome(tfNome.getText());
+					editora.setUrl(tfUrl.getText());
+				}
+			}		
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally{//Fecha o st, rs e o connection
+			Banco.closeConnection();
+			Banco.closeStatement(st);
+		}
+	}
 }

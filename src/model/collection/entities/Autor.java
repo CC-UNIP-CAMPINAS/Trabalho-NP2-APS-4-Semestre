@@ -46,7 +46,7 @@ public class Autor implements Comparable<Autor>{//agora implementa comparable pa
 	public static String juntaNomeAutor(String aNome, String aSobreNome){
          String nome = aNome;
          String sobreNome = aSobreNome;
-         nome = nome.replaceAll(" ","");
+         nome = nome.replaceAll("  ","");
          sobreNome = sobreNome.replaceAll("  ","");
          return nome+" "+sobreNome;
 }

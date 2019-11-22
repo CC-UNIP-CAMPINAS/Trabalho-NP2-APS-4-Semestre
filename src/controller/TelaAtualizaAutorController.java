@@ -56,8 +56,8 @@ public class TelaAtualizaAutorController {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			Autor autor = TelaAtualizaAutor.getAutorSelecionado();
-			TelaAtualizaAutor.getTfSobreNome().setText(autor.getSobreNome());
-			TelaAtualizaAutor.getTfNome().setText(autor.getNomeAutor());	
+			TelaAtualizaAutor.getTfSobreNome().setText(autor.getSobreNome().replaceAll("  ", ""));
+			TelaAtualizaAutor.getTfNome().setText(autor.getNomeAutor().replaceAll("  ", ""));	
 			TelaAtualizaAutor.getTfId().setText(String.valueOf(autor.getIdAutor()));	
 		}
 
