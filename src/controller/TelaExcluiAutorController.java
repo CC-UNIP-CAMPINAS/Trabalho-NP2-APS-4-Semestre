@@ -57,7 +57,6 @@ public class TelaExcluiAutorController {
 			data[2] = autor.getSobreNome();
 			data[0] = autor.getIdAutor();
 			dtmAutores.addRow(data);
-			System.out.println(autor);
 		}
 	}
 
@@ -86,7 +85,6 @@ public class TelaExcluiAutorController {
 				populaTabelaAutoresSelecionados(TelaExcluiAutor.getDtmAutoresSelecionados(),
 						TelaExcluiAutor.getAutorSelecionado());
 				TelaExcluiAutor.getDtmAutores().removeRow(TelaExcluiAutor.getTabelaAutores().getSelectedRow());
-				System.out.println(TelaExcluiAutor.getTabelaAutores().getRowCount());
 
 			} else {// se não foi escolhido a outra tabela e esse else acontece
 				Object[] data = new Object[3];

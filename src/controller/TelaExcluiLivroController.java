@@ -87,7 +87,6 @@ public class TelaExcluiLivroController {
 				populaTabelaLivrosSelecionados(TelaExcluiLivro.getDtmLivrosSelecionados(),
 						TelaExcluiLivro.getLivroSelecionado());
 				TelaExcluiLivro.getDtmLivros().removeRow(TelaExcluiLivro.getTabelaLivros().getSelectedRow());
-				System.out.println(TelaExcluiLivro.getTabelaLivros().getRowCount());
 
 			} else {// se não foi escolhido a outra tabela e esse else acontece
 				Object[] data = new Object[4];

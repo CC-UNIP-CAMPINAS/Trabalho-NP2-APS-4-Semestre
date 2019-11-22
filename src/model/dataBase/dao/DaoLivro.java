@@ -48,11 +48,6 @@ static ResultSet rs = null;
 			}
 			Colecao.getLivros().add(livro);
 			JOptionPane.showMessageDialog(null, "Livro criado!");
-
-			System.out.println("\n--------------------------------------------\n");
-			for (Livro liv : Colecao.getLivros()) {
-				System.out.println(liv);
-			}
 		}
 		catch(SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -279,17 +274,12 @@ static ResultSet rs = null;
 				Colecao.getLivros().remove(livExclusao);
 				Colecao.getLivros().add(livro);
 				JOptionPane.showMessageDialog(null, "Livro Editado!");
-
-				System.out.println("\n--------------------------------------------\n");
-				for (Livro liv : Colecao.getLivros()) {
-					System.out.println(liv);
-				}
 			}
 			catch(SQLException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
 			catch(NumberFormatException a) {
-				JOptionPane.showMessageDialog(null, "Valor incorreto para preço!\n''"+TelaCriaLivro.getTfPrice().getText()+"'' nï¿½o ï¿½ um nï¿½mero!");
+				JOptionPane.showMessageDialog(null, "Valor incorreto para preï¿½o!\n''"+TelaCriaLivro.getTfPrice().getText()+"'' nï¿½o ï¿½ um nï¿½mero!");
 			}
 			finally{//Fecha o st e o connection
 				Banco.closeConnection();

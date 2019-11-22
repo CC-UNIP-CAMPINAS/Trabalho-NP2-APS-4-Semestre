@@ -63,7 +63,6 @@ public class TelaCriaLivroController{
 			if(escolha == 0) {// se a tabela selecionada for a geral ela manda sinal 0 e esse if acontece
 				populaTabelaAutoresSelecionados(TelaCriaLivro.getDtmAutoresSelecionados(), TelaCriaLivro.getAutorSelecionado());	
 				TelaCriaLivro.getDtmAutores().removeRow(TelaCriaLivro.getTabelaAutores().getSelectedRow());
-				System.out.println(TelaCriaLivro.getTabelaAutores().getRowCount());
 				
 			}
 			else {//se não foi escolhido a outra tabela e esse else acontece
