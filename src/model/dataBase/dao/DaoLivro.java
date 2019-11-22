@@ -55,7 +55,7 @@ static ResultSet rs = null;
 			}
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		catch(NumberFormatException a) {
 			JOptionPane.showMessageDialog(null, "Valor incorreto para preï¿½o!\n''"+TelaCriaLivro.getTfPrice().getText()+"'' nï¿½o ï¿½ um nï¿½mero!");
@@ -91,7 +91,7 @@ static ResultSet rs = null;
 			}
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		finally{//Fecha o st e o connection
 			Banco.closeConnection();
@@ -124,7 +124,7 @@ static ResultSet rs = null;
 				}
 			}
 			catch(SQLException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
 			finally{//Fecha o st, rs e o connection
 				Banco.closeConnection();
@@ -208,7 +208,7 @@ static ResultSet rs = null;
 				}
 			}
 			catch(SQLException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
 			finally{//Fecha o st, rs e o connection
 				Banco.closeConnection();
@@ -232,7 +232,7 @@ static ResultSet rs = null;
 				return count;
 			}
 			catch(SQLException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, e.getMessage());
 			}	
 			finally{//Fecha o st, rs e o connection
 				Banco.closeConnection();
@@ -286,7 +286,7 @@ static ResultSet rs = null;
 				}
 			}
 			catch(SQLException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
 			catch(NumberFormatException a) {
 				JOptionPane.showMessageDialog(null, "Valor incorreto para preço!\n''"+TelaCriaLivro.getTfPrice().getText()+"'' nï¿½o ï¿½ um nï¿½mero!");
