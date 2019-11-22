@@ -6,11 +6,19 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -50,11 +58,19 @@ public class TelaLivraria extends JFrame{
 		p1.setPreferredSize(new Dimension(800, 100));
 		p1.setBackground(Color.decode("#1A535C"));
 		
-		JLabel l = new JLabel(); 
-		//https://cdn2.iconfinder.com/data/icons/education-and-science-5/64/education_science_tree_of_knowledge-512.png
+		JLabel l = new JLabel();
 		l.setText("<html><body><h1><span style='color: white;'>Livraria<span><br>&nbsp&nbsp&nbsp&nbsp&nbsp Amazonia</h1></body></html>"); 
 		p1.add(l,BorderLayout.LINE_START);
-		
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new URL("http://zonit.com.br/images/aps_tree.jpg"));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		ImageIcon icon = new ImageIcon(img.getScaledInstance(43, 57, Image.SCALE_DEFAULT));
+		l.setIcon(icon);
 		//--------Sidebar------------------------------------------------------------------
 		JPanel sidebar = new JPanel();
 		sidebar.setPreferredSize(new Dimension(300, 300));
