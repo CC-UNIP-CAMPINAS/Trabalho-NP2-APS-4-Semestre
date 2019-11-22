@@ -118,7 +118,6 @@ public class TelaExcluiLivro extends JFrame {
 
 	public static Livro getLivroSelecionado() {// seleciona a linha da tabela e pega os dados dessa linha
 		int linhaSelecionado = getTabelaLivros().getSelectedRow();
-
 		String editora = getDtmLivros().getValueAt(linhaSelecionado, 2).toString();
 		String titulo = getDtmLivros().getValueAt(linhaSelecionado, 0).toString();
 		String isbn = getDtmLivros().getValueAt(linhaSelecionado, 1).toString();

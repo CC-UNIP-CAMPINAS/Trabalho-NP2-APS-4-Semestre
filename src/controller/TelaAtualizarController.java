@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import view.TelaAtualizaAutor;
 import view.TelaAtualizaEditora;
+import view.TelaAtualizaLivro;
 import view.TelaAtualizar;
 
 public class TelaAtualizarController {
@@ -30,8 +31,8 @@ public class TelaAtualizarController {
 	public class OnBtAtualizarLivro implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-//			TelaExcluiLivro.getInstance().show();
-//			TelaExcluir.getInstance().setVisible(false);
+			TelaAtualizaLivro.getInstance().show();
+			TelaAtualizar.getInstance().setVisible(false);
 		}
 	}
 }

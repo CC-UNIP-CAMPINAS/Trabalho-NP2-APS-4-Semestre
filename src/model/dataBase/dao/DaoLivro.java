@@ -240,4 +240,60 @@ static ResultSet rs = null;
 			}
 			return count;
 		}
+		
+		public static void atualizaLivro(JTextField tfTitle, JTextField tfIsbn, JTextField tfPrice, JComboBox cbEditora, JTable tabelaAutores) {
+			try {
+				Editora editora = (Editora) cbEditora.getSelectedItem();//Pega o objeto selecionado na combobox e associa ele a uma nova editora
+				st = Banco.getConnection().prepareStatement("update	books set title = ?, isbn = ?, publisher_id = ?, price = ? where isbn = ?");
+				st.setString(1, tfTitle.getText());
+				st.setString(2, tfIsbn.getText());
+				st.setInt(3, editora.getIdEditora());//da editora selecionada, pega o id pra associar no banco
+				st.setDouble(4, Double.parseDouble(tfPrice.getText()));
+				st.setString(5, tfIsbn.getText());
+				st.execute();
+				
+				st = Banco.getConnection().prepareStatement("delete from booksauthors where isbn = ?");
+				st.setString(1, tfIsbn.getText());
+				st.execute();
+				Banco.closeStatement(st);
+				
+				st = Banco.getConnection().prepareStatement("INSERT INTO booksauthors VALUES (?, ?, ?)");
+				int i;
+				int count = (tabelaAutores.getRowCount()-1);
+				int j = 1;
+				Livro livro = new Livro(tfTitle.getText(), tfIsbn.getText(), editora.getNomeEditora(), Double.parseDouble(tfPrice.getText()));
+				for(i=0; i<=count; i++) {
+					st.setString(1, tfIsbn.getText());
+					st.setInt(2, Integer.parseInt((tabelaAutores.getValueAt(i, 0).toString())));
+					st.setInt(3, j);
+					st.execute();
+					livro.getAutores().add(Autor.juntaNomeAutor(tabelaAutores.getValueAt(i, 1).toString(), tabelaAutores.getValueAt(i, 2).toString()));
+					j++;
+				}
+				Livro livExclusao = null;
+				for (Livro liv : Colecao.getLivros()) {
+					if(liv.getIsbn().replaceAll(" ", "").equals(tfIsbn.getText().replaceAll(" ", ""))) {
+						livExclusao = liv;
+					}
+				}
+				Colecao.getLivros().remove(livExclusao);
+				Colecao.getLivros().add(livro);
+				JOptionPane.showMessageDialog(null, "Livro Editado!");
+
+				System.out.println("\n--------------------------------------------\n");
+				for (Livro liv : Colecao.getLivros()) {
+					System.out.println(liv);
+				}
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			catch(NumberFormatException a) {
+				JOptionPane.showMessageDialog(null, "Valor incorreto para preço!\n''"+TelaCriaLivro.getTfPrice().getText()+"'' nï¿½o ï¿½ um nï¿½mero!");
+			}
+			finally{//Fecha o st e o connection
+				Banco.closeConnection();
+				Banco.closeStatement(st);
+			}
+		}
 }
