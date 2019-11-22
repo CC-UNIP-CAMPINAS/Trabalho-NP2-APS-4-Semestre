@@ -66,7 +66,7 @@ public class TelaExcluiEditora extends JFrame {
 		tabelaEditoras = new JTable(getDtmEditora());
 		JScrollPane barraRolagem = new JScrollPane(getTabelaEditoras());
 		barraRolagem.getViewport().setBackground(Color.decode("#F7FFF7"));
-		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
+		barraRolagem.setBorder (BorderFactory.createTitledBorder (BorderFactory.createEtchedBorder (), "Editoras Cadastradas"));
 		panelCentral.add(barraRolagem);
 		getTabelaEditoras().addMouseListener(new TelaExcluiEditoraController().new selecionaEditora(0));// coloca um evento
 
@@ -81,7 +81,7 @@ public class TelaExcluiEditora extends JFrame {
 		tabelaEditorasSelecionadas = new JTable(getDtmEditorasSelecionadas());
 		JScrollPane barraRolagem2 = new JScrollPane(getTabelaEditorasSelecionadas());
 		barraRolagem2.getViewport().setBackground(Color.decode("#F7FFF7"));
-		barraRolagem2.setBorder(BorderFactory.createEmptyBorder());
+		barraRolagem2.setBorder (BorderFactory.createTitledBorder (BorderFactory.createEtchedBorder (), "Editoras Selecionados"));
 		panelCentral.add(barraRolagem2);
 		getTabelaEditorasSelecionadas().addMouseListener(new TelaExcluiEditoraController().new selecionaEditora(1));
 

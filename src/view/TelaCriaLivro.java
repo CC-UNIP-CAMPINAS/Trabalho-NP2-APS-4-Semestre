@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -71,8 +73,9 @@ public class TelaCriaLivro extends JFrame {
 		tabelaAutores = new JTable(getDtmAutores());
 		JScrollPane barraRolagem = new JScrollPane(getTabelaAutores());
 		barraRolagem.getViewport().setBackground(Color.decode("#F7FFF7"));
-		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
+		barraRolagem.setBorder (BorderFactory.createTitledBorder (BorderFactory.createEtchedBorder (), "Autores Cadastrados"));
 		panelCentral.add(barraRolagem);
+		
 
 		TelaCriaLivroController.populaTabelaAutores(getDtmAutores());// popula a tabela de autores
 		getTabelaAutores().addMouseListener(new TelaCriaLivroController().new SelecionaAutor(0));
@@ -88,7 +91,7 @@ public class TelaCriaLivro extends JFrame {
 		tabelaAutoresSelecionados = new JTable(getDtmAutoresSelecionados());
 		JScrollPane barraRolagem2 = new JScrollPane(getTabelaAutoresSelecionados());
 		barraRolagem2.getViewport().setBackground(Color.decode("#F7FFF7"));
-		barraRolagem2.setBorder(BorderFactory.createEmptyBorder());
+		barraRolagem2.setBorder (BorderFactory.createTitledBorder (BorderFactory.createEtchedBorder (), "Autores Selecionados"));
 
 		panelCentral.add(barraRolagem2);
 		getTabelaAutoresSelecionados().addMouseListener(new TelaCriaLivroController().new SelecionaAutor(1));

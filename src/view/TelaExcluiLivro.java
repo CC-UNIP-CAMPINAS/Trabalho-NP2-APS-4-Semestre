@@ -66,7 +66,7 @@ public class TelaExcluiLivro extends JFrame {
 		tabelaLivros = new JTable(getDtmLivros());
 		JScrollPane barraRolagem = new JScrollPane(getTabelaLivros());
 		barraRolagem.getViewport().setBackground(Color.decode("#F7FFF7"));
-		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
+		barraRolagem.setBorder (BorderFactory.createTitledBorder (BorderFactory.createEtchedBorder (), "Livros Cadastrados"));
 		panelCentral.add(barraRolagem);
 		getTabelaLivros().addMouseListener(new TelaExcluiLivroController().new SelecionaLivro(0));
 
@@ -81,7 +81,7 @@ public class TelaExcluiLivro extends JFrame {
 		tabelaLivrosSelecionados = new JTable(getDtmLivrosSelecionados());
 		JScrollPane barraRolagem2 = new JScrollPane(getTabelaLivrosSelecionados());
 		barraRolagem2.getViewport().setBackground(Color.decode("#F7FFF7"));
-		barraRolagem2.setBorder(BorderFactory.createEmptyBorder());
+		barraRolagem2.setBorder (BorderFactory.createTitledBorder (BorderFactory.createEtchedBorder (), "Livros Selecionados"));
 		panelCentral.add(barraRolagem2);
 		getTabelaLivrosSelecionados().addMouseListener(new TelaExcluiLivroController().new SelecionaLivro(1));
 		

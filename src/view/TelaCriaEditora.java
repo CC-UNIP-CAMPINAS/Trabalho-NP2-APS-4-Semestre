@@ -61,7 +61,7 @@ public class TelaCriaEditora extends JFrame{
 		tabelaEditoras = new JTable(dtmEditoras);
 		JScrollPane barraRolagem = new JScrollPane(tabelaEditoras);
 		barraRolagem.getViewport().setBackground(Color.decode("#F7FFF7"));
-		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
+		barraRolagem.setBorder (BorderFactory.createTitledBorder (BorderFactory.createEtchedBorder (), "Editoras Cadastradas"));
 		panelCentral.add(barraRolagem);
 		TelaCriaEditoraController.populaTabelaEditora(dtmEditoras);
 		

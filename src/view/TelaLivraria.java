@@ -202,9 +202,13 @@ public class TelaLivraria extends JFrame{
 		content.setLayout(new BorderLayout());
 		
 		JScrollPane barraRolagem = new JScrollPane(tabela.getTabela());
+		content.setBorder (BorderFactory.createTitledBorder (BorderFactory.createEtchedBorder (), "Buscar Livros"));
+
+
 		barraRolagem.getViewport().setBackground(Color.decode("#F7FFF7"));
 		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
 		content.add(barraRolagem);
+		content.add(tabela.getTabela()); 
 		
 		this.add(p1, BorderLayout.NORTH);
 		this.add(sidebar, BorderLayout.EAST);

@@ -67,7 +67,7 @@ public class TelaExcluiAutor extends JFrame {
 		tabelaAutores = new JTable(getDtmAutores());
 		JScrollPane barraRolagem = new JScrollPane(getTabelaAutores());
 		barraRolagem.getViewport().setBackground(Color.decode("#F7FFF7"));
-		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
+		barraRolagem.setBorder (BorderFactory.createTitledBorder (BorderFactory.createEtchedBorder (), "Autores Cadastrados"));
 		panelCentral.add(barraRolagem);
 		getTabelaAutores().addMouseListener(new TelaExcluiAutorController().new selecionaAutor(0));
 
@@ -82,7 +82,7 @@ public class TelaExcluiAutor extends JFrame {
 		tabelaAutoresSelecionados = new JTable(getDtmAutoresSelecionados());
 		JScrollPane barraRolagem2 = new JScrollPane(getTabelaAutoresSelecionados());
 		barraRolagem2.getViewport().setBackground(Color.decode("#F7FFF7"));
-		barraRolagem2.setBorder(BorderFactory.createEmptyBorder());
+		barraRolagem2.setBorder (BorderFactory.createTitledBorder (BorderFactory.createEtchedBorder (), "Autores Selecionados"));
 		panelCentral.add(barraRolagem2);
 		getTabelaAutoresSelecionados().addMouseListener(new TelaExcluiAutorController().new selecionaAutor(1));
 

@@ -3,6 +3,8 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -33,6 +35,8 @@ public class TelaCriaAutor extends JFrame {
 		setVisible(true);
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+		
 		setLocationRelativeTo(null);
 		setTitle("Autor");
 
@@ -63,7 +67,7 @@ public class TelaCriaAutor extends JFrame {
 		tabelaAutores = new JTable(dtmAutores);
 		JScrollPane barraRolagem = new JScrollPane(tabelaAutores);
 		barraRolagem.getViewport().setBackground(Color.decode("#F7FFF7"));
-		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
+		barraRolagem.setBorder (BorderFactory.createTitledBorder (BorderFactory.createEtchedBorder (), "Autores Cadastrados"));
 		panelCentral.add(barraRolagem);
 		TelaCriaAutorController.populaTabelaAutores(dtmAutores);
 
