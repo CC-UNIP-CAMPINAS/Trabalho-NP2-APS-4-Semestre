@@ -11,6 +11,7 @@ public class TableContent extends DefaultTableModel{
 	
 	private JTable tabela;
 	private DefaultTableModel modelo = this;
+	private static String autoresTemp;
 	
 	public JTable getTabela() {
 		return tabela;
@@ -35,12 +36,20 @@ public class TableContent extends DefaultTableModel{
     
     public static void pesquisar(DefaultTableModel modelo) {
         modelo.setNumRows(0);
+        modelo.addRow(new Object[]{"<html><strong>ISDB<strong></html>", "<html><strong>Titulo<strong></html>", "<html><strong>Autores<strong></html>","<html><strong>Editora<strong></html>","<html><strong>Preço<strong></html>"});
         
         for (Livro l : Colecao.getLivrosTemporario()) {
+        	autoresTemp="";
         	l.getAutores().sort(Livro.sortBySequ_no);
+        	for (String s : l.getAutores()) {
+        		s = s.replaceAll("[^a-zA-Z ]", "");
+        		autoresTemp = s + ", " + autoresTemp;
+            }
+        	System.out.println(autoresTemp);
             modelo.addRow(new Object[]{
             		l.getIsbn(),
             		l.getTitulo(),
+            		autoresTemp,
             		l.getEditora(),
             		l.getPreco()
             });

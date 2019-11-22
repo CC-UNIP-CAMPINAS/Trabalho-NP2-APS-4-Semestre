@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -33,8 +34,9 @@ public abstract class DaoAutor {
 			Colecao.getAutores().add(autor);
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
+		
 		finally{//Fecha o st e o connection
 			Banco.closeConnection();
 			Banco.closeStatement(st);
@@ -55,7 +57,7 @@ public abstract class DaoAutor {
 			}
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		finally{//Fecha o st, rs e o connection
 			Banco.closeConnection();
@@ -86,7 +88,7 @@ public abstract class DaoAutor {
 			}
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		finally{//Fecha o st, rs e o connection
 			Banco.closeConnection();
@@ -110,7 +112,7 @@ public abstract class DaoAutor {
 			return count;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		finally{//Fecha o st, rs e o connection
 			Banco.closeConnection();
@@ -135,7 +137,7 @@ public abstract class DaoAutor {
 			}		
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		finally{//Fecha o st, rs e o connection
 			Banco.closeConnection();

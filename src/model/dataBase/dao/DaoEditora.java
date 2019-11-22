@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -33,7 +34,7 @@ public abstract class DaoEditora {
 			Editora editora = new Editora(tfNome.getText(), tfUrl.getText(), (rs.getInt(1)+1));
 			Colecao.getEditoras().add(editora);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		} finally {// Fecha o st e o connection
 			Banco.closeConnection();
 			Banco.closeStatement(st);
@@ -51,7 +52,7 @@ public abstract class DaoEditora {
 				Colecao.getEditoras().add(editora);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		} finally {// Fecha o st, rs e o connection
 			Banco.closeConnection();
 			Banco.closeStatement(st);
@@ -78,7 +79,7 @@ public abstract class DaoEditora {
 				status = false;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		} finally {// Fecha o st, rs e o connection
 			Banco.closeConnection();
 			Banco.closeStatement(st);
@@ -100,7 +101,7 @@ public abstract class DaoEditora {
 			}
 			return count;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		} finally {// Fecha o st, rs e o connection
 			Banco.closeConnection();
 			Banco.closeStatement(st);
@@ -123,7 +124,7 @@ public abstract class DaoEditora {
 			}		
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		finally{//Fecha o st, rs e o connection
 			Banco.closeConnection();
