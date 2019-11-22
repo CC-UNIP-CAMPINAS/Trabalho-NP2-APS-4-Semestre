@@ -55,7 +55,7 @@ public class TelaExcluiLivro extends JFrame {
 		panelCentral.setLayout(new GridLayout(1, 2, 5, 0));
 		add(BorderLayout.CENTER, panelCentral);
 
-		String[] colunas = { "TÃ­tulo", "ISBN", "Editora", "PreÃ§o" };
+		String[] colunas = { "Título", "ISBN", "Editora", "Preço" };
 		Object[][] dados = new Object[0][4];
 		dtmLivros = new DefaultTableModel(dados, colunas) {
 			@Override
@@ -70,7 +70,7 @@ public class TelaExcluiLivro extends JFrame {
 		panelCentral.add(barraRolagem);
 		getTabelaLivros().addMouseListener(new TelaExcluiLivroController().new SelecionaLivro(0));
 
-		String[] colunas2 = { "TÃ­tulo", "ISBN", "Editora", "PreÃ§o" };
+		String[] colunas2 = { "Título", "ISBN", "Editora", "Preço" };
 		Object[][] dados2 = new Object[0][4];
 		dtmLivrosSelecionados = new DefaultTableModel(dados2, colunas2) {
 			@Override

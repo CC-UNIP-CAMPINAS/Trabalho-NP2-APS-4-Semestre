@@ -71,7 +71,7 @@ public class TelaAtualizaLivro extends JFrame {
 		TelaAtualizaLivroController.populaTabelaLivros(tabela);
 		tabela.getTabela().addMouseListener(new TelaAtualizaLivroController().new SelecionaLivro());
 
-		String[] colunas = {"ID", "Nome", "Sobre Nome"};
+		String[] colunas = {"ID", "Nome", "Sobrenome"};
 		Object[][] dados = new Object[0][3];
 		dtmAutores = new DefaultTableModel(dados, colunas) {
 			@Override
@@ -87,7 +87,7 @@ public class TelaAtualizaLivro extends JFrame {
 
 		getTabelaAutores().addMouseListener(new TelaAtualizaLivroController().new selecionaAutor(0));
 
-		String[] colunas2 = {"ID", "Nome", "Sobre Nome" };
+		String[] colunas2 = {"ID", "Nome", "Sobrenome" };
 		Object[][] dados2 = new Object[0][3];
 		dtmAutoresSelecionados = new DefaultTableModel(dados2, colunas2) {
 			@Override
@@ -117,7 +117,7 @@ public class TelaAtualizaLivro extends JFrame {
 		panelDireitaInterno.setLayout(new GridLayout(5, 2, 5, 5));
 		panelDireita.add(panelDireitaInterno);
 
-		JLabel labelTituloDoLivro = new JLabel("Tï¿½tulo:");
+		JLabel labelTituloDoLivro = new JLabel("Título:");
 		panelDireitaInterno.add(labelTituloDoLivro);
 		panelDireitaInterno.add(tfTitle);
 
@@ -125,7 +125,7 @@ public class TelaAtualizaLivro extends JFrame {
 		panelDireitaInterno.add(labelIsbn);
 		panelDireitaInterno.add(tfIsbn);
 
-		JLabel labelPreco = new JLabel("Preï¿½o:");
+		JLabel labelPreco = new JLabel("Preço:");
 		panelDireitaInterno.add(labelPreco);
 		panelDireitaInterno.add(tfPrice);
 

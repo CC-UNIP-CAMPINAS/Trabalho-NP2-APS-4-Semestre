@@ -88,7 +88,7 @@ public class TelaAtualizaEditora extends JFrame {
 		getTfNome().setPreferredSize(new Dimension(250, 20));
 		panelDireita.add(getTfNome());
 		
-		JLabel labelUrlEditora = new JLabel("URL da editora:");
+		JLabel labelUrlEditora = new JLabel("URL da Editora:");
 		panelDireita.add(labelUrlEditora);
 		getTfUrl().setPreferredSize(new Dimension(250, 20));
 		panelDireita.add(getTfUrl());

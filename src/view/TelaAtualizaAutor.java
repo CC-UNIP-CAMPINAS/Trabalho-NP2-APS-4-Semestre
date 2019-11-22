@@ -87,7 +87,7 @@ public class TelaAtualizaAutor extends JFrame {
 		getTfNome().setPreferredSize(new Dimension(250, 20));
 		panelDireita.add(getTfNome());
 		
-		JLabel labelSobreNomeAutor = new JLabel("Sobre Nome do autor:");
+		JLabel labelSobreNomeAutor = new JLabel("Sobrenome do autor:");
 		panelDireita.add(labelSobreNomeAutor);
 		getTfSobreNome().setPreferredSize(new Dimension(250, 20));
 		panelDireita.add(getTfSobreNome());

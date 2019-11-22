@@ -37,7 +37,7 @@ public class TableController extends DefaultTableModel{
     
     public static void pesquisar(DefaultTableModel modelo) {
         modelo.setNumRows(0);
-        modelo.addRow(new Object[]{"<html><strong>ISDB<strong></html>", "<html><strong>Titulo<strong></html>", "<html><strong>Autores<strong></html>","<html><strong>Editora<strong></html>","<html><strong>Preço<strong></html>"});
+        modelo.addRow(new Object[]{"<html><strong>ISDB<strong></html>", "<html><strong>Título<strong></html>", "<html><strong>Autores<strong></html>","<html><strong>Editora<strong></html>","<html><strong>Preço<strong></html>"});
         
         for (Livro l : Colecao.getLivrosTemporario()) {
         	autoresTemp="";
@@ -73,6 +73,6 @@ public class TableController extends DefaultTableModel{
 	
 	@Override
 	public boolean isCellEditable(int row, int column) {
-		return false; // Isso faz a celula da tabela nÃ£o ser editavel
+		return false; // Isso faz a celula da tabela não ser editavel
 	}
 }

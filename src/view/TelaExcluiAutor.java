@@ -56,7 +56,7 @@ public class TelaExcluiAutor extends JFrame {
 		panelCentral.setLayout(new GridLayout(1, 2, 5, 0));
 		add(BorderLayout.CENTER, panelCentral);
 
-		String[] colunas = { "ID", "Nome", "Sobre Nome" };
+		String[] colunas = { "ID", "Nome", "Sobrenome" };
 		Object[][] dados = new Object[0][3];
 		dtmAutores = new DefaultTableModel(dados, colunas) {
 			@Override
@@ -71,7 +71,7 @@ public class TelaExcluiAutor extends JFrame {
 		panelCentral.add(barraRolagem);
 		getTabelaAutores().addMouseListener(new TelaExcluiAutorController().new selecionaAutor(0));
 
-		String[] colunas2 = { "ID", "Nome", "Sobre Nome" };
+		String[] colunas2 = { "ID", "Nome", "Sobrenome" };
 		Object[][] dados2 = new Object[0][3];
 		dtmAutoresSelecionados = new DefaultTableModel(dados2, colunas2) {
 			@Override
