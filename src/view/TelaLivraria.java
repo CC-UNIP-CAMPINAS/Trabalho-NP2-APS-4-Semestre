@@ -23,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -60,17 +61,17 @@ public class TelaLivraria extends JFrame{
 		
 		JLabel l = new JLabel();
 		l.setText("<html><body><h1><span style='color: white;'>Livraria<span><br>&nbsp&nbsp&nbsp&nbsp&nbsp Amazonia</h1></body></html>"); 
-		p1.add(l,BorderLayout.LINE_START);
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new URL("http://zonit.com.br/images/aps_tree.jpg"));
+			img = ImageIO.read(new URL("http://zonit.com.br/images/aps_tree.png"));
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		ImageIcon icon = new ImageIcon(img.getScaledInstance(43, 57, Image.SCALE_DEFAULT));
 		l.setIcon(icon);
+		p1.add(l,BorderLayout.LINE_START);
 		//--------Sidebar------------------------------------------------------------------
 		JPanel sidebar = new JPanel();
 		sidebar.setPreferredSize(new Dimension(300, 300));
