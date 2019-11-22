@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 
 import model.collection.Colecao;
 import model.dataBase.dao.DaoLivro;
-import view.TableContent;
 import view.TelaAtualizar;
 import view.TelaCriaAutor;
 import view.TelaCriaEditora;
@@ -24,7 +23,7 @@ public class TelaLivrariaController{
 		public void actionPerformed(ActionEvent e) {		
 			if(TelaLivraria.isBook.isSelected()) {
 				if(DaoLivro.buscarLivro(TelaLivraria.SearchTextField,"BOOKS", orderByType())) {
-					TableContent.pesquisar(TelaLivraria.tabela.getModelo());
+					TableController.pesquisar(TelaLivraria.tabela.getModelo());
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Nenhum dado encontrado!");
@@ -33,7 +32,7 @@ public class TelaLivrariaController{
 			}
 			if(TelaLivraria.isAuthor.isSelected()) {
 				if(DaoLivro.buscarLivro(TelaLivraria.SearchTextField,"AUTHOR",orderByType())) {
-					TableContent.pesquisar(TelaLivraria.tabela.getModelo());
+					TableController.pesquisar(TelaLivraria.tabela.getModelo());
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Nenhum dado encontrado!");
@@ -41,7 +40,7 @@ public class TelaLivrariaController{
 			}
 			if(TelaLivraria.isPublisher.isSelected()) {
 				if(DaoLivro.buscarLivro(TelaLivraria.SearchTextField,"PUBLISHER", orderByType())) {
-					TableContent.pesquisar(TelaLivraria.tabela.getModelo());
+					TableController.pesquisar(TelaLivraria.tabela.getModelo());
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Nenhum dado encontrado!");
@@ -49,7 +48,7 @@ public class TelaLivrariaController{
 			}
 			if(TelaLivraria.isAll.isSelected()) {
 				if(DaoLivro.buscarLivro(TelaLivraria.SearchTextField,"ALL", orderByType())) {
-					TableContent.pesquisar(TelaLivraria.tabela.getModelo());
+					TableController.pesquisar(TelaLivraria.tabela.getModelo());
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Nenhum dado encontrado!");

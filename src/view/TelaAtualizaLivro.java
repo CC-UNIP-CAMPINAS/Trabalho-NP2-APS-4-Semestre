@@ -17,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import controller.TableController;
 import controller.TelaAtualizaLivroController;
 import controller.TelaCriaLivroController;
 import model.collection.Colecao;
@@ -29,7 +30,7 @@ public class TelaAtualizaLivro extends JFrame {
 	private static JTextField tfTitle = new JTextField();
 	private static JTextField tfIsbn = new JTextField();
 	private static JTextField tfPrice = new JTextField();
-	public static TableContent tabela = new TableContent();
+	public static TableController tabela = new TableController();
 	private static DefaultTableModel dtmAutores;
 	private static DefaultTableModel dtmAutoresSelecionados;
 	private static JTable tabelaAutores;
@@ -205,7 +206,7 @@ public class TelaAtualizaLivro extends JFrame {
 		return tfPrice;
 	}
 
-	public static TableContent getTabela() {
+	public static TableController getTabela() {
 		return tabela;
 	}
 }

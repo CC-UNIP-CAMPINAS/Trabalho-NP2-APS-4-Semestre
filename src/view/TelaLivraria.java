@@ -19,11 +19,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import controller.TableController;
 import controller.TelaLivrariaController; 
 
 public class TelaLivraria extends JFrame{
 	public static JButton btnAddBook;
-	public static TableContent tabela = new TableContent();
+	public static TableController tabela = new TableController();
 	public static JTextField SearchTextField;
 	//Select From
 	public static JCheckBox isBook;
