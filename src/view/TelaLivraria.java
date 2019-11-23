@@ -62,15 +62,18 @@ public class TelaLivraria extends JFrame{
 		JLabel l = new JLabel();
 		l.setText("<html><body><h1><span style='color: white;'>Livraria<span><br>&nbsp&nbsp&nbsp&nbsp&nbsp Amazonia</h1></body></html>"); 
 		BufferedImage img = null;
-		try {
+		try {	
 			img = ImageIO.read(new URL("http://zonit.com.br/images/aps_tree.png"));
+			ImageIcon icon = new ImageIcon(img.getScaledInstance(43, 57, Image.SCALE_DEFAULT));
+			l.setIcon(icon);
 		} catch (MalformedURLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
-		ImageIcon icon = new ImageIcon(img.getScaledInstance(43, 57, Image.SCALE_DEFAULT));
-		l.setIcon(icon);
+		catch (NullPointerException e) {
+		
+		}
 		p1.add(l,BorderLayout.LINE_START);
 		//--------Sidebar------------------------------------------------------------------
 		JPanel sidebar = new JPanel();

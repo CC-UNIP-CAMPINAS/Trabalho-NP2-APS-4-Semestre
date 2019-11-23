@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import controller.TelaAtualizaAutorController;
+import controller.TelaAtualizaLivroController;
 import model.collection.Colecao;
 import model.collection.entities.Autor;
 import model.collection.entities.Editora;
@@ -108,7 +110,7 @@ static ResultSet rs = null;
 				rs = st.executeQuery();
 				if(rs.next()) {
 					do {
-						Livro livro = new Livro(rs.getString(1), rs.getString(2), rs.getString(6), rs.getDouble(4));
+						Livro livro = new Livro(rs.getString(1).trim(), rs.getString(2).trim(), rs.getString(6).trim(), rs.getDouble(4));
 						Colecao.getLivrosTemporario().add(livro);	
 					}
 					while(rs.next());
@@ -181,8 +183,8 @@ static ResultSet rs = null;
 				rs = st.executeQuery();
 				if(rs.next()) {
 					do {
-						Livro livro = new Livro(rs.getString(1), rs.getString(2), rs.getString(9), rs.getDouble(4));
-						String nomeAutor= rs.getString(7)+": "+Autor.juntaNomeAutor(rs.getString(12), rs.getString(13));
+						Livro livro = new Livro(rs.getString(1).trim(), rs.getString(2).trim(), rs.getString(9).trim(), rs.getDouble(4));
+						String nomeAutor= rs.getString(7).trim()+": "+Autor.juntaNomeAutor(rs.getString(12), rs.getString(13));
 						if(Colecao.getLivrosTemporario().contains(livro)){
 							for(Livro liv : Colecao.getLivrosTemporario()){
 								if(liv.getIsbn().equals(livro.getIsbn())){
@@ -247,17 +249,17 @@ static ResultSet rs = null;
 				st.setString(5, tfIsbn.getText());
 				st.execute();
 				
-				st = Banco.getConnection().prepareStatement("delete from booksauthors where isbn = ?");
-				st.setString(1, tfIsbn.getText());
-				st.execute();
-				Banco.closeStatement(st);
-				
 				st = Banco.getConnection().prepareStatement("INSERT INTO booksauthors VALUES (?, ?, ?)");
 				int i;
 				int count = (tabelaAutores.getRowCount()-1);
 				int j = 1;
 				Livro livro = new Livro(tfTitle.getText(), tfIsbn.getText(), editora.getNomeEditora(), Double.parseDouble(tfPrice.getText()));
-				for(i=0; i<=count; i++) {
+				
+				for(int k = 0; k < TelaAtualizaLivroController.count; k++) {
+					livro.getAutores().add(Autor.juntaNomeAutor(tabelaAutores.getValueAt(k, 1).toString(), tabelaAutores.getValueAt(k, 2).toString()));
+				}
+				
+				for(i=TelaAtualizaLivroController.count; i<=count; i++) {
 					st.setString(1, tfIsbn.getText());
 					st.setInt(2, Integer.parseInt((tabelaAutores.getValueAt(i, 0).toString())));
 					st.setInt(3, j);

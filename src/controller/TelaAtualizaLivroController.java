@@ -16,6 +16,7 @@ import view.TelaAtualizaLivro;
 
 public class TelaAtualizaLivroController {
 
+	public static int count = 0;
 	public class onBtAtualizarLivro implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (JOptionPane.showConfirmDialog(null, "Deseja mesmo atualizar esse livro?", "Atenção", JOptionPane.CANCEL_OPTION) == 0) {
@@ -78,12 +79,14 @@ public class TelaAtualizaLivroController {
 	}
 	
 	public class SelecionaLivro implements MouseListener {
+		
 		@Override
 		public void mousePressed(MouseEvent e) {
 		}
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			TelaAtualizaLivroController.count = 0;
 			TelaAtualizaLivro.getDtmAutoresSelecionados().setRowCount(0);
 			populaTabelaAutores(TelaAtualizaLivro.getDtmAutoresSelecionados());
 			TelaAtualizaLivro.getDtmAutores().setRowCount(0);
@@ -95,6 +98,7 @@ public class TelaAtualizaLivroController {
 			for (Livro liv : Colecao.getLivros()) {
 				if(liv.getIsbn().equals(livro2.getIsbn())) {
 					livro2 = liv;
+	
 				}
 			}
 			
@@ -102,6 +106,7 @@ public class TelaAtualizaLivroController {
 				for(Autor autor2 : Colecao.getAutores()) {
 					if(autor.replaceAll(" ", "").equals(autor2.getNomeCompleto().replaceAll(" ", ""))) {
 						populaTabelaAutores(TelaAtualizaLivro.getDtmAutores(), autor2);	
+						TelaAtualizaLivroController.count += 1;
 					}	
 				}
 			}
