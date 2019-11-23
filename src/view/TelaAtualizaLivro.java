@@ -69,7 +69,7 @@ public class TelaAtualizaLivro extends JFrame {
 		barraRolagem.setBorder(BorderFactory.createEmptyBorder());
 		panelCentral.add(barraRolagem);
 		TelaAtualizaLivroController.populaTabelaLivros(tabela);
-		String[] colunasTabela = {"ISDB","Titulo","Editora","Pre�o"};
+		String[] colunasTabela = {"ISDB","Titulo","Editora","Preço"};
         tabela.setColumnIdentifiers(colunasTabela);
 		tabela.getTabela().addMouseListener(new TelaAtualizaLivroController().new SelecionaLivro());
 
