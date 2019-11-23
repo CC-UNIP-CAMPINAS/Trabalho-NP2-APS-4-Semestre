@@ -40,7 +40,7 @@ public class TelaExcluiEditoraController {
 					TelaExcluiEditora.getDtmEditorasSelecionadas().setNumRows(0);
 					JOptionPane.showMessageDialog(null, "Editora excluída!");
 				} else {
-					JOptionPane.showMessageDialog(null, "Tabela de exclus�o est� vazia!");
+					JOptionPane.showMessageDialog(null, "Tabela de exclusão está vazia!");
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Operação cancelada!");

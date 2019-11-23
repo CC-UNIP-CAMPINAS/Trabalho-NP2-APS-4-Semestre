@@ -18,7 +18,7 @@ public class TelaAtualizaEditoraController {
 
 	public class onBtAtualizarEditora implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (JOptionPane.showConfirmDialog(null, "Deseja mesmo atualizar essa editora?", "Atenção", JOptionPane.CANCEL_OPTION) == 0) {
+			if (JOptionPane.showConfirmDialog(null, "Deseja mesmo atualizar essa editora?", "Atenï¿½ï¿½o", JOptionPane.CANCEL_OPTION) == 0) {
 				if (!(TelaAtualizaEditora.getTfId().getText().isEmpty())) {
 					DaoEditora.atualizaEditora(TelaAtualizaEditora.getTfNome(), TelaAtualizaEditora.getTfId(), TelaAtualizaEditora.getTfUrl());
 					populaTabelaEditoras(TelaAtualizaEditora.getDtmEditoras());
@@ -29,7 +29,7 @@ public class TelaAtualizaEditoraController {
 				}
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Operação cancelada!");
+				JOptionPane.showMessageDialog(null, "OperaÃ§Ã£o cancelada!");
 			}
 			TelaAtualizaEditora.getTfId().setText("");
 			TelaAtualizaEditora.getTfNome().setText("");

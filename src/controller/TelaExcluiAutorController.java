@@ -39,7 +39,7 @@ public class TelaExcluiAutorController {
 					JOptionPane.showMessageDialog(null, "Autor excluído!");
 				} 
 				else {
-					JOptionPane.showMessageDialog(null, "Tabela de exclus�o est� vazia!");
+					JOptionPane.showMessageDialog(null, "Tabela de exclusão está vazia!");
 				}
 			}
 			else {

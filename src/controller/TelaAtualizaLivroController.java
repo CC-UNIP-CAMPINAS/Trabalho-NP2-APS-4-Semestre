@@ -18,7 +18,7 @@ public class TelaAtualizaLivroController {
 
 	public class onBtAtualizarLivro implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (JOptionPane.showConfirmDialog(null, "Deseja mesmo atualizar esse livro?", "Atenção", JOptionPane.CANCEL_OPTION) == 0) {
+			if (JOptionPane.showConfirmDialog(null, "Deseja mesmo atualizar esse livro?", "AtenÃ§Ã£o", JOptionPane.CANCEL_OPTION) == 0) {
 				if (!(TelaAtualizaLivro.getTfIsbn().getText().isEmpty())) {
 					DaoLivro.atualizaLivro(TelaAtualizaLivro.getTfTitle(), TelaAtualizaLivro.getTfIsbn(), TelaAtualizaLivro.getTfPrice(), TelaAtualizaLivro.getCbEditora(), TelaAtualizaLivro.getTabelaAutores());
 					populaTabelaLivros(TelaAtualizaLivro.tabela);
@@ -28,7 +28,7 @@ public class TelaAtualizaLivroController {
 				}
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Operação cancelada!");
+				JOptionPane.showMessageDialog(null, "OperaÃ§Ã£o cancelada!");
 			}
 			TelaAtualizaLivro.getTfIsbn().setText("");
 			TelaAtualizaLivro.getTfPrice().setText("");

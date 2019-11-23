@@ -20,7 +20,7 @@ public class TableController extends DefaultTableModel{
 	
     public TableController() {
         tabela = new JTable(getModelo());
-        String[] colunas = {"ISDB","Titulo","Autores","Editora","Pre�o"};
+        String[] colunas = {"ISDB","Titulo","Autores","Editora","Preço"};
         this.setColumnIdentifiers(colunas);
         pesquisar(getModelo());
         

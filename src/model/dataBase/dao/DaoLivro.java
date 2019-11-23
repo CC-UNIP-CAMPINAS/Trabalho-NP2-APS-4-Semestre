@@ -53,7 +53,7 @@ static ResultSet rs = null;
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		catch(NumberFormatException a) {
-			JOptionPane.showMessageDialog(null, "Valor incorreto para pre�o!\n''"+TelaCriaLivro.getTfPrice().getText()+"'' n�o � um n�mero!");
+			JOptionPane.showMessageDialog(null, "Valor incorreto para preço!\n''"+TelaCriaLivro.getTfPrice().getText()+"'' não é um numero!");
 		}
 		finally{//Fecha o st e o connection
 			Banco.closeConnection();
@@ -279,7 +279,7 @@ static ResultSet rs = null;
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
 			catch(NumberFormatException a) {
-				JOptionPane.showMessageDialog(null, "Valor incorreto para pre�o!\n''"+TelaCriaLivro.getTfPrice().getText()+"'' n�o � um n�mero!");
+				JOptionPane.showMessageDialog(null, "Valor incorreto para preço!\n''"+TelaCriaLivro.getTfPrice().getText()+"'' não é um número!");
 			}
 			finally{//Fecha o st e o connection
 				Banco.closeConnection();

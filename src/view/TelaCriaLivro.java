@@ -109,7 +109,7 @@ public class TelaCriaLivro extends JFrame {
 		panelDireitaInterno.setLayout(new GridLayout(5, 2, 5, 5));
 		panelDireita.add(panelDireitaInterno);
 
-		JLabel labelTituloDoLivro = new JLabel("Título:");
+		JLabel labelTituloDoLivro = new JLabel("TÃ­tulo:");
 		panelDireitaInterno.add(labelTituloDoLivro);
 		panelDireitaInterno.add(tfTitle);
 
@@ -117,7 +117,7 @@ public class TelaCriaLivro extends JFrame {
 		panelDireitaInterno.add(labelIsbn);
 		panelDireitaInterno.add(tfIsbn);
 
-		JLabel labelPreco = new JLabel("Preço:");
+		JLabel labelPreco = new JLabel("PreÃ§o:");
 		panelDireitaInterno.add(labelPreco);
 		panelDireitaInterno.add(tfPrice);
 
